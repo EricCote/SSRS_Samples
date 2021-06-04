@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Description>This sample demonstrates how to use gauge scales.</Description>
+  <DataSources>
+    <DataSource Name="AdventureWorksXMLDataSource">
+      <ConnectionProperties>
+        <DataProvider>XML</DataProvider>
+        <ConnectString />
+        <IntegratedSecurity>true</IntegratedSecurity>
+      </ConnectionProperties>
+      <rd:DataSourceID>fd64622b-b601-457f-9cd9-5b0e62453d67</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="AdventureWorksDataSet">
+      <Fields>
+        <Field Name="SalesPersonID">
+          <DataField>SalesPersonID</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FullName">
+          <DataField>FullName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Title">
+          <DataField>Title</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SalesTerritory">
+          <DataField>SalesTerritory</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ID2002">
+          <DataField>2002</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ID2003">
+          <DataField>2003</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ID2004">
+          <DataField>2004</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>AdventureWorksXMLDataSource</DataSourceName>
+        <CommandText>&lt;Query&gt;&lt;XmlData&gt;&lt;Root&gt;
+&lt;AdventureWorks.Sales.vSalesPersonSalesByFiscalYears SalesPersonID="275" FullName="Michael G Blythe" Title="Sales Representative" SalesTerritory="Northeast" _x0032_002="1951086.8256" _x0032_003="4443906.8935" _x0032_004="4557045.0459" /&gt;
+&lt;AdventureWorks.Sales.vSalesPersonSalesByFiscalYears SalesPersonID="276" FullName="Linda C Mitchell" Title="Sales Representative" SalesTerritory="Southwest" _x0032_002="2800029.1538" _x0032_003="4647225.4431" _x0032_004="5200475.2311" /&gt;
+&lt;AdventureWorks.Sales.vSalesPersonSalesByFiscalYears SalesPersonID="277" FullName="Jillian  Carson" Title="Sales Representative" SalesTerritory="Central" _x0032_002="3308895.8507" _x0032_003="4991867.7074" _x0032_004="3857163.6331" /&gt;
+&lt;AdventureWorks.Sales.vSalesPersonSalesByFiscalYears SalesPersonID="277" FullName="Ranjit Varkey" Title="Sales Representative" SalesTerritory="Central" _x0032_002="3308895.8507" _x0032_003="4991867.7074" _x0032_004="3857163.6331" /&gt;
+&lt;AdventureWorks.Sales.vSalesPersonSalesByFiscalYears SalesPersonID="275" FullName="Michael G Blythe" Title="Sales Representative" SalesTerritory="Northeast" _x0032_002="1951086.8256" _x0032_003="4743906.8935" _x0032_004="4557045.0459" /&gt;
+&lt;AdventureWorks.Sales.vSalesPersonSalesByFiscalYears SalesPersonID="275" FullName="Jae Pak" Title="Sales Representative" SalesTerritory="Northeast" _x0032_002="2311086.8256" _x0032_003="4743906.8935" _x0032_004="4557045.0459" /&gt;
+&lt;AdventureWorks.Sales.vSalesPersonSalesByFiscalYears SalesPersonID="275" FullName="Garrett R Vargas" Title="Sales Representative" SalesTerritory="Northeast" _x0032_002="1245286.8256" _x0032_003="4743906.8935" _x0032_004="4557045.0459" /&gt;
+&lt;AdventureWorks.Sales.vSalesPersonSalesByFiscalYears SalesPersonID="232" FullName="Linda Mitchell" Title="Sales Representative" SalesTerritory="Northwest" _x0032_002="1876.8256" _x0032_003="1253906.8935" _x0032_004="2233455.0459" /&gt;
+&lt;AdventureWorks.Sales.vSalesPersonSalesByFiscalYears SalesPersonID="275" FullName="Shu K Ito" Title="Sales Representative" SalesTerritory="Northeast" _x0032_002="175876.8256" _x0032_003="4743906.8935" _x0032_004="4557045.0459" /&gt;
+&lt;/Root&gt;&lt;/XmlData&gt;&lt;/Query&gt;</CommandText>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Body>
+    <ReportItems>
+      <GaugePanel Name="GaugePanel2">
+        <RadialGauges>
+          <RadialGauge Name="RadialGauge1">
+            <GaugeScales>
+              <RadialScale Name="RadialScale1">
+                <Radius>=Parameters!Radius.Value</Radius>
+                <StartAngle>=Parameters!StartAngle.Value</StartAngle>
+                <SweepAngle>=Parameters!SweepAngle.Value</SweepAngle>
+                <GaugePointers>
+                  <RadialPointer Name="RadialPointer1">
+                    <PointerCap>
+                      <Style>
+                        <BackgroundColor>Gainsboro</BackgroundColor>
+                        <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+                        <BackgroundGradientEndColor>DimGray</BackgroundGradientEndColor>
+                        <BackgroundHatchType>None</BackgroundHatchType>
+                      </Style>
+                      <CapImage>
+                        <OffsetX>0pt</OffsetX>
+                        <OffsetY>0pt</OffsetY>
+                        <Source>External</Source>
+                        <Value />
+                      </CapImage>
+                      <OnTop>true</OnTop>
+                      <Reflection>true</Reflection>
+                      <CapStyle>RoundedWithWideIndentation</CapStyle>
+                    </PointerCap>
+                    <NeedleStyle>TaperedWithTail</NeedleStyle>
+                    <Style>
+                      <Border>
+                        <Style>None</Style>
+                      </Border>
+                      <BackgroundColor>Red</BackgroundColor>
+                      <BackgroundGradientType>VerticalCenter</BackgroundGradientType>
+                      <BackgroundGradientEndColor>#ff945f</BackgroundGradientEndColor>
+                      <BackgroundHatchType>None</BackgroundHatchType>
+                      <ShadowOffset>2pt</ShadowOffset>
+                    </Style>
+                    <GaugeInputValue>
+                      <Value>43</Value>
+                      <Multiplier>1</Multiplier>
+                    </GaugeInputValue>
+                    <PointerImage>
+                      <OffsetX>0pt</OffsetX>
+                      <OffsetY>0pt</OffsetY>
+                      <Source>External</Source>
+                      <Value />
+                    </PointerImage>
+                    <MarkerLength>10</MarkerLength>
+                    <Placement>Inside</Placement>
+                    <Width>7</Width>
+                  </RadialPointer>
+                </GaugePointers>
+                <Style>
+                  <Border>
+                    <Style>None</Style>
+                  </Border>
+                  <BackgroundColor>=Parameters!ScaleBarColor.Value</BackgroundColor>
+                  <BackgroundGradientEndColor>White</BackgroundGradientEndColor>
+                  <BackgroundHatchType>None</BackgroundHatchType>
+                  <ShadowOffset>0pt</ShadowOffset>
+                </Style>
+                <Interval>=Parameters!Interval.Value</Interval>
+                <IntervalOffset>NaN</IntervalOffset>
+                <MaximumValue>
+                  <Value>100</Value>
+                </MaximumValue>
+                <MinimumValue>
+                  <Value>0</Value>
+                </MinimumValue>
+                <GaugeMajorTickMarks>
+                  <Interval>NaN</Interval>
+                  <IntervalOffset>NaN</IntervalOffset>
+                  <Style>
+                    <Border>
+                      <Color>DimGray</Color>
+                      <Style>Solid</Style>
+                    </Border>
+                    <BackgroundColor>WhiteSmoke</BackgroundColor>
+                  </Style>
+                  <EnableGradient>true</EnableGradient>
+                  <TickMarkImage>
+                    <Source>External</Source>
+                    <Value />
+                  </TickMarkImage>
+                  <Length>14</Length>
+                  <Width>1</Width>
+                </GaugeMajorTickMarks>
+                <GaugeMinorTickMarks>
+                  <Interval>NaN</Interval>
+                  <IntervalOffset>NaN</IntervalOffset>
+                  <Style>
+                    <Border>
+                      <Color>DimGray</Color>
+                      <Style>Solid</Style>
+                    </Border>
+                    <BackgroundColor>WhiteSmoke</BackgroundColor>
+                  </Style>
+                  <EnableGradient>true</EnableGradient>
+                  <TickMarkImage>
+                    <Source>External</Source>
+                    <Value />
+                  </TickMarkImage>
+                  <Length>4</Length>
+                  <Width>1</Width>
+                </GaugeMinorTickMarks>
+                <MaximumPin>
+                  <Location>0</Location>
+                  <PinLabel>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                    <DistanceFromScale>0</DistanceFromScale>
+                  </PinLabel>
+                  <Style>
+                    <Border>
+                      <Color>DimGray</Color>
+                      <Style>Solid</Style>
+                    </Border>
+                    <BackgroundColor>WhiteSmoke</BackgroundColor>
+                  </Style>
+                  <Placement>Cross</Placement>
+                  <EnableGradient>true</EnableGradient>
+                  <TickMarkImage>
+                    <Source>External</Source>
+                    <Value />
+                  </TickMarkImage>
+                  <Length>0</Length>
+                  <Width>0</Width>
+                </MaximumPin>
+                <MinimumPin>
+                  <Location>0</Location>
+                  <PinLabel>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                    </Style>
+                    <DistanceFromScale>0</DistanceFromScale>
+                  </PinLabel>
+                  <Style>
+                    <Border>
+                      <Color>DimGray</Color>
+                      <Style>Solid</Style>
+                    </Border>
+                    <BackgroundColor>WhiteSmoke</BackgroundColor>
+                  </Style>
+                  <Placement>Cross</Placement>
+                  <EnableGradient>true</EnableGradient>
+                  <TickMarkImage>
+                    <Source>External</Source>
+                    <Value />
+                  </TickMarkImage>
+                  <Length>0</Length>
+                  <Width>0</Width>
+                </MinimumPin>
+                <ScaleLabels>
+                  <Style>
+                    <FontFamily>Verdana</FontFamily>
+                    <FontSize>11pt</FontSize>
+                  </Style>
+                  <DistanceFromScale>5</DistanceFromScale>
+                  <ShowEndLabels>true</ShowEndLabels>
+                  <UseFontPercent>true</UseFontPercent>
+                </ScaleLabels>
+                <Width>=Parameters!ScaleWidth.Value</Width>
+              </RadialScale>
+            </GaugeScales>
+            <BackFrame>
+              <Style>
+                <Border>
+                  <Color>Gray</Color>
+                  <Style>Solid</Style>
+                  <Width>1.5pt</Width>
+                </Border>
+                <BackgroundColor>#f1f4f9</BackgroundColor>
+                <BackgroundGradientType>None</BackgroundGradientType>
+                <BackgroundGradientEndColor>#00ffffff</BackgroundGradientEndColor>
+                <BackgroundHatchType>None</BackgroundHatchType>
+                <ShadowOffset>0pt</ShadowOffset>
+              </Style>
+              <FrameStyle>Edged</FrameStyle>
+              <FrameShape>CustomCircular3</FrameShape>
+              <FrameWidth>6</FrameWidth>
+              <FrameBackground>
+                <Style>
+                  <BackgroundColor>#eaeff5</BackgroundColor>
+                  <BackgroundGradientType>VerticalCenter</BackgroundGradientType>
+                  <BackgroundGradientEndColor>#00ffffff</BackgroundGradientEndColor>
+                  <BackgroundHatchType>None</BackgroundHatchType>
+                </Style>
+              </FrameBackground>
+              <FrameImage>
+                <Source>External</Source>
+                <Value />
+              </FrameImage>
+            </BackFrame>
+            <TopImage>
+              <Source>External</Source>
+              <Value />
+            </TopImage>
+            <Top>0.5</Top>
+            <Left>0.5</Left>
+            <Height>99</Height>
+            <Width>99</Width>
+          </RadialGauge>
+        </RadialGauges>
+        <AutoLayout>true</AutoLayout>
+        <BackFrame>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+            <BackgroundColor>Gainsboro</BackgroundColor>
+            <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+            <BackgroundGradientEndColor>Gray</BackgroundGradientEndColor>
+            <BackgroundHatchType>None</BackgroundHatchType>
+            <ShadowOffset>0pt</ShadowOffset>
+          </Style>
+          <FrameBackground>
+            <Style>
+              <BackgroundColor>Silver</BackgroundColor>
+              <BackgroundGradientType>DiagonalLeft</BackgroundGradientType>
+              <BackgroundGradientEndColor>Gray</BackgroundGradientEndColor>
+              <BackgroundHatchType>None</BackgroundHatchType>
+            </Style>
+          </FrameBackground>
+          <FrameImage>
+            <Source>External</Source>
+            <Value />
+          </FrameImage>
+        </BackFrame>
+        <TopImage>
+          <Source>External</Source>
+          <Value />
+        </TopImage>
+        <DataSetName>AdventureWorksDataSet</DataSetName>
+        <Top>1.20078in</Top>
+        <Left>0.32639in</Left>
+        <Height>3in</Height>
+        <Width>3in</Width>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <BackgroundColor>White</BackgroundColor>
+        </Style>
+      </GaugePanel>
+      <Textbox Name="Textbox3">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Formatting Scales on a Gauge</Value>
+                <Style>
+                  <FontSize>16pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <Top>0.19104in</Top>
+        <Left>0.32639in</Left>
+        <Height>0.3125in</Height>
+        <Width>5.84723in</Width>
+        <ZIndex>1</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox2_2">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>A gauge scale contains the numbers and tick marks that can be shown on a gauge. The sections in between tick marks are called scale intervals.  You must define the minimum and maximum intervals on a gauge.</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <Top>0.57299in</Top>
+        <Left>0.32639in</Left>
+        <Height>0.55835in</Height>
+        <Width>5.03473in</Width>
+        <ZIndex>2</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+    </ReportItems>
+    <Height>5.17375in</Height>
+    <Style />
+  </Body>
+  <ReportParameters>
+    <ReportParameter Name="ScaleWidth">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>10</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Scale bar width:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>0</Value>
+            <Label>0</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>5</Value>
+            <Label>5</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>10</Value>
+            <Label>10</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>15</Value>
+            <Label>15</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Interval">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>10</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Interval:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>10</Value>
+            <Label>10</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>20</Value>
+            <Label>20</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>25</Value>
+            <Label>25</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="SweepAngle">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>300</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Sweep angle:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>240</Value>
+            <Label>240</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>270</Value>
+            <Label>270</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>300</Value>
+            <Label>300</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="StartAngle">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>30</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Start angle:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>30</Value>
+            <Label>30</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>60</Value>
+            <Label>60</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>90</Value>
+            <Label>90</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Radius">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>37</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Radius:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>32</Value>
+            <Label>32</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>37</Value>
+            <Label>37</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>39</Value>
+            <Label>39</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="ScaleBarColor">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Silver</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Scale bar color</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>Red</Value>
+            <Label>Red</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>Silver</Value>
+            <Label>Silver</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>Yellow</Value>
+            <Label>Yellow</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+  </ReportParameters>
+  <Width>6.5in</Width>
+  <Page>
+    <PageHeader>
+      <Height>0.23958in</Height>
+      <PrintOnFirstPage>true</PrintOnFirstPage>
+      <PrintOnLastPage>true</PrintOnLastPage>
+      <Style>
+        <Border>
+          <Style>None</Style>
+        </Border>
+      </Style>
+    </PageHeader>
+    <LeftMargin>1in</LeftMargin>
+    <RightMargin>1in</RightMargin>
+    <TopMargin>1in</TopMargin>
+    <BottomMargin>1in</BottomMargin>
+    <Style />
+  </Page>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportID>82d8a617-642c-4392-a882-7cecb00a7045</rd:ReportID>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+</Report>

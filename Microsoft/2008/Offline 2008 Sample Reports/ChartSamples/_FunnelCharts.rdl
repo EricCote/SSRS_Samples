@@ -1,0 +1,454 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition">
+  <Description>This sample shows a funnel chart.</Description>
+  <DataSources>
+    <DataSource Name="AdventureWorksXMLDataSource">
+      <ConnectionProperties>
+        <DataProvider>XML</DataProvider>
+        <ConnectString />
+        <IntegratedSecurity>true</IntegratedSecurity>
+      </ConnectionProperties>
+      <rd:DataSourceID>33edad57-ecd5-4e29-8ebe-daeed00c8a30</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="AdventureWorksXMLDataSet">
+      <Fields>
+        <Field Name="SalesPersonID">
+          <DataField>SalesPersonID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="FullName">
+          <DataField>FullName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Title">
+          <DataField>Title</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SalesTerritory">
+          <DataField>SalesTerritory</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Y2002">
+          <DataField>Y2002</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="Y2003">
+          <DataField>Y2003</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="Y2004">
+          <DataField>Y2004</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="LastModifiedOn">
+          <DataField>LastModifiedOn</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>AdventureWorksXMLDataSource</DataSourceName>
+        <CommandText>&lt;Query&gt;
+&lt;ElementPath&gt;Root /S {@SalesPersonID (Integer), @FullName, @Title, @SalesTerritory, @Y2002 (Float), @Y2003 (Float), @Y2004 (Float), @LastModifiedOn(Date)}
+&lt;/ElementPath&gt;
+&lt;XmlData&gt;
+&lt;Root&gt;
+&lt;S SalesPersonID="287" FullName="Tete A Mensa-Annan" Title="Sales Representative" SalesTerritory="Northwest" Y2003="883338.7107" Y2004="1931620.1835" LastModifiedOn="1999-01-13T00:00:00"/&gt;
+&lt;S SalesPersonID="275" FullName="Michael G Blythe" Title="Sales Representative" SalesTerritory="Northeast" Y2002="1951086.8256" Y2003="4743906.8935" Y2004="4557045.0459" LastModifiedOn="1999-01-13T00:00:00"/&gt;
+&lt;S SalesPersonID="276" FullName="Linda C Mitchell" Title="Sales Representative" SalesTerritory="Southwest" Y2002="2800029.1538" Y2003="4647225.4431" Y2004="5200475.2311" LastModifiedOn="1999-01-13T00:00:00"/&gt;
+&lt;S SalesPersonID="277" FullName="Jillian Carson" Title="Sales Representative" SalesTerritory="Central" Y2002="3308895.8507" Y2003="4991867.7074" Y2004="3857163.6331" LastModifiedOn="1999-01-13T00:00:00"/&gt;
+&lt;S SalesPersonID="278" FullName="Garrett R Vargas" Title="Sales Representative" SalesTerritory="Canada" Y2002="1135639.2632" Y2003="1480136.0065" Y2004="1764938.9857" LastModifiedOn="1999-01-13T00:00:00"/&gt;
+&lt;S SalesPersonID="279" FullName="Tsvi Michael Reiter" Title="Sales Representative" SalesTerritory="Southeast" Y2002="3242697.0127" Y2003="2661156.2418" Y2004="2811012.7150" LastModifiedOn="1999-01-13T00:00:00"/&gt;
+&lt;/Root&gt;
+&lt;/XmlData&gt;
+&lt;/Query&gt;</CommandText>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Body>
+    <ReportItems>
+      <Chart Name="Chart1">
+        <ChartCategoryHierarchy>
+          <ChartMembers>
+            <ChartMember>
+              <Group Name="Chart1_CategoryGroup2">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!FullName.Value</GroupExpression>
+                </GroupExpressions>
+              </Group>
+              <SortExpressions>
+                <SortExpression>
+                  <Value>=Sum(Fields!Y2002.Value)</Value>
+                  <Direction>Descending</Direction>
+                </SortExpression>
+              </SortExpressions>
+              <Label>=Fields!FullName.Value</Label>
+            </ChartMember>
+          </ChartMembers>
+        </ChartCategoryHierarchy>
+        <ChartSeriesHierarchy>
+          <ChartMembers>
+            <ChartMember>
+              <Label>Y2002</Label>
+            </ChartMember>
+          </ChartMembers>
+        </ChartSeriesHierarchy>
+        <ChartData>
+          <ChartSeriesCollection>
+            <ChartSeries Name="Y2002">
+              <ChartDataPoints>
+                <ChartDataPoint>
+                  <ChartDataPointValues>
+                    <Y>=Sum(Fields!Y2002.Value)</Y>
+                  </ChartDataPointValues>
+                  <ChartDataLabel>
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                    <UseValueAsLabel>true</UseValueAsLabel>
+                    <Visible>true</Visible>
+                  </ChartDataLabel>
+                  <Style />
+                  <ChartMarker>
+                    <Style />
+                  </ChartMarker>
+                  <DataElementOutput>Output</DataElementOutput>
+                </ChartDataPoint>
+              </ChartDataPoints>
+              <Type>Shape</Type>
+              <Subtype>Funnel</Subtype>
+              <Style />
+              <ChartEmptyPoints>
+                <Style />
+                <ChartMarker>
+                  <Style />
+                </ChartMarker>
+                <ChartDataLabel>
+                  <Style />
+                </ChartDataLabel>
+              </ChartEmptyPoints>
+              <CustomProperties>
+                <CustomProperty>
+                  <Name>FunnelLabelStyle</Name>
+                  <Value>=Parameters!FunnelLabelStyle.Value</Value>
+                </CustomProperty>
+                <CustomProperty>
+                  <Name>Funnel3DDrawingStyle</Name>
+                  <Value>=Parameters!FunnelShape.Value</Value>
+                </CustomProperty>
+              </CustomProperties>
+              <ValueAxisName>Primary</ValueAxisName>
+              <CategoryAxisName>Primary</CategoryAxisName>
+              <ChartSmartLabel>
+                <CalloutLineColor>Black</CalloutLineColor>
+                <MinMovingDistance>0pt</MinMovingDistance>
+              </ChartSmartLabel>
+            </ChartSeries>
+          </ChartSeriesCollection>
+        </ChartData>
+        <ChartAreas>
+          <ChartArea Name="Default">
+            <ChartCategoryAxes>
+              <ChartAxis Name="Primary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Enabled>False</Enabled>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+              </ChartAxis>
+              <ChartAxis Name="Secondary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Enabled>False</Enabled>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Location>Opposite</Location>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+              </ChartAxis>
+            </ChartCategoryAxes>
+            <ChartValueAxes>
+              <ChartAxis Name="Primary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Silver</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+              </ChartAxis>
+              <ChartAxis Name="Secondary">
+                <Style>
+                  <FontSize>8pt</FontSize>
+                </Style>
+                <ChartAxisTitle>
+                  <Caption />
+                  <Style>
+                    <FontSize>8pt</FontSize>
+                  </Style>
+                </ChartAxisTitle>
+                <ChartMajorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                    </Border>
+                  </Style>
+                </ChartMajorGridLines>
+                <ChartMinorGridLines>
+                  <Style>
+                    <Border>
+                      <Color>Gainsboro</Color>
+                      <Style>Dotted</Style>
+                    </Border>
+                  </Style>
+                </ChartMinorGridLines>
+                <ChartMinorTickMarks>
+                  <Length>0.5</Length>
+                </ChartMinorTickMarks>
+                <CrossAt>NaN</CrossAt>
+                <Location>Opposite</Location>
+                <Minimum>NaN</Minimum>
+                <Maximum>NaN</Maximum>
+              </ChartAxis>
+            </ChartValueAxes>
+            <ChartThreeDProperties>
+              <Enabled>true</Enabled>
+              <Clustered>true</Clustered>
+            </ChartThreeDProperties>
+            <Style>
+              <Border>
+                <Color>#808080</Color>
+              </Border>
+            </Style>
+          </ChartArea>
+        </ChartAreas>
+        <Palette>Custom</Palette>
+        <ChartCustomPaletteColors>
+          <ChartCustomPaletteColor>#a5bfd6</ChartCustomPaletteColor>
+          <ChartCustomPaletteColor>#fed15d</ChartCustomPaletteColor>
+          <ChartCustomPaletteColor>#cccccc</ChartCustomPaletteColor>
+          <ChartCustomPaletteColor>#e1eaf5</ChartCustomPaletteColor>
+          <ChartCustomPaletteColor>#999999</ChartCustomPaletteColor>
+        </ChartCustomPaletteColors>
+        <ChartBorderSkin>
+          <ChartBorderSkinType>Emboss</ChartBorderSkinType>
+          <Style>
+            <BackgroundColor>Gray</BackgroundColor>
+            <Color>White</Color>
+          </Style>
+        </ChartBorderSkin>
+        <ChartNoDataMessage Name="NoDataMessage">
+          <Caption>No Data Available.</Caption>
+          <Style />
+        </ChartNoDataMessage>
+        <DataSetName>AdventureWorksXMLDataSet</DataSetName>
+        <Top>1.67361in</Top>
+        <Left>0.41667in</Left>
+        <Height>3in</Height>
+        <Width>4.75in</Width>
+        <Style>
+          <Border>
+            <Style>Solid</Style>
+          </Border>
+          <BackgroundColor>White</BackgroundColor>
+        </Style>
+      </Chart>
+      <Textbox Name="textbox8">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Funnel Charts</Value>
+                <Style>
+                  <FontSize>16pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <Top>0.42708in</Top>
+        <Left>0.41667in</Left>
+        <Height>0.29167in</Height>
+        <Width>6.25in</Width>
+        <ZIndex>1</ZIndex>
+        <DataElementOutput>NoOutput</DataElementOutput>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="textbox7">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>A funnel chart displays values as progressively decreasing proportions. The size of the area is determined by the series value as a percentage of the total of all values.  In the example below, it is known that the data is distributed disproportionately, so it is ideal for display on a funnel chart.</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <Top>0.76041in</Top>
+        <Left>0.41667in</Left>
+        <Height>0.75in</Height>
+        <Width>4.80208in</Width>
+        <ZIndex>2</ZIndex>
+        <DataElementOutput>NoOutput</DataElementOutput>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+    </ReportItems>
+    <Height>8.04513in</Height>
+    <Style />
+  </Body>
+  <ReportParameters>
+    <ReportParameter Name="FunnelLabelStyle">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>OutsideInColumn</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>How the labels should be placed:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>OutsideInColumn</Value>
+            <Label>Outside with callout lines</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>Outside</Value>
+            <Label>Outside</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>Inside</Value>
+            <Label>Inside</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>Disabled</Value>
+            <Label>Do not show labels</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="FunnelShape">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>CircularBase</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Shape of the funnel:</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>SquareBase</Value>
+            <Label>Square</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>CircularBase</Value>
+            <Label>Circle</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+  </ReportParameters>
+  <Width>7.875in</Width>
+  <Page>
+    <LeftMargin>1in</LeftMargin>
+    <RightMargin>1in</RightMargin>
+    <TopMargin>1in</TopMargin>
+    <BottomMargin>1in</BottomMargin>
+    <Style />
+  </Page>
+  <Language>en-US</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportID>7a6f74b3-f781-43db-9bc7-bef1a7e639f9</rd:ReportID>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+</Report>

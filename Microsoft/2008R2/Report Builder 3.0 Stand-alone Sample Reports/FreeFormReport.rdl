@@ -1,0 +1,1537 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2010/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="ListDataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString>Data Source=localhost</ConnectString>
+        <IntegratedSecurity>true</IntegratedSecurity>
+      </ConnectionProperties>
+      <rd:SecurityType>Integrated</rd:SecurityType>
+      <rd:DataSourceID>8dbf9f1f-bcf3-48c8-8532-5fb5be3ce926</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="ListDataset">
+      <Query>
+        <DataSourceName>ListDataSource</DataSourceName>
+        <CommandText>SELECT CAST('2009-01-05' AS date) as SalesDate, 'Lauren Johnson' as FullName,'Central' as Territory, 'Accessories' as Subcategory,'Carrying Case' as Product, CAST(16996.60 AS money) AS Sales, 68 as Quantity
+UNION SELECT CAST('2009-01-05' AS date) as SalesDate, 'Warren Pal' as FullName,'North' as Territory, 'Accessories' as Subcategory, 'Carrying Case' as Product, CAST(13747.25 AS money) AS Sales, 55 as Quantity
+UNION SELECT CAST('2009-01-05' AS date) as SalesDate, 'Fernando Ross' as FullName,'South' as Territory, 'Accessories' as Subcategory,'Carrying Case' as Product, CAST(9248.15 AS money) As Sales, 37 as Quantity
+UNION SELECT CAST('2009-01-05' AS date) as SalesDate, 'Lauren Johnson' as FullName,'Central' as Territory, 'Accessories' as Subcategory,'Tripod' as Product, CAST(1350.00 AS money) AS Sales, 18 as Quantity
+UNION SELECT CAST('2009-01-05' AS date) as SalesDate, 'Warren Pal' as FullName,'North' as Territory, 'Accessories' as Subcategory,'Tripod' as Product, CAST(1800.00 AS money) AS Sales, 24 as Quantity
+UNION SELECT CAST('2009-01-05' AS date) as SalesDate, 'Fernando Ross' as FullName,'South' as Territory, 'Accessories' as Subcategory,'Tripod' as Product, CAST(1125.00 AS money) AS Sales, 15 as Quantity
+UNION SELECT CAST('2009-01-05' AS date) as SalesDate, 'Lauren Johnson' as FullName,'Central' as Territory, 'Accessories' as Subcategory,'Lens Adapter' as Product, CAST(1147.50 AS money) AS Sales, 17 as Quantity
+UNION SELECT CAST('2009-01-05' AS date) as SalesDate, 'Warren Pal' as FullName,'North' as Territory, 'Accessories' as Subcategory,  'Lens Adapter' as Product, CAST(742.50 AS money) AS Sales, 11 as Quantity
+UNION SELECT CAST('2009-01-05' AS date) as SalesDate, 'Fernando Ross' as FullName,'South' as Territory, 'Accessories' as Subcategory,'Lens Adapter' as Product, CAST(1417.50 AS money) AS Sales, 21 as Quantity
+UNION SELECT CAST('2009-01-06' AS date) as SalesDate, 'Lauren Johnson' as FullName,'Central' as Territory, 'Accessories' as Subcategory, 'Carrying Case' as Product, CAST(13497.30 AS money) AS Sales, 54 as Quantity
+UNION SELECT CAST('2009-01-06' AS date) as SalesDate, 'Warren Pal' as FullName,'North' as Territory, 'Accessories' as Subcategory, 'Carrying Case' as Product, CAST(11997.60 AS money) AS Sales, 48 as Quantity
+UNION SELECT CAST('2009-01-06' AS date) as SalesDate, 'Fernando Ross' as FullName,'South' as Territory, 'Accessories' as Subcategory, 'Carrying Case' as Product, CAST(10247.95 AS money) As Sales, 41 as Quantity
+UNION SELECT CAST('2009-01-06' AS date) as SalesDate, 'Lauren Johnson' as FullName,'Central' as Territory, 'Accessories' as Subcategory, 'Tripod' as Product, CAST(1200.00 AS money) AS Sales, 16 as Quantity
+UNION SELECT CAST('2009-01-06' AS date) as SalesDate, 'Warren Pal' as FullName,'North' as Territory, 'Accessories' as Subcategory,'Tripod' as Product, CAST(2025.00 AS money) AS Sales, 27 as Quantity
+UNION SELECT CAST('2009-01-06' AS date) as SalesDate, 'Fernando Ross' as FullName,'South' as Territory, 'Accessories' as Subcategory,'Tripod' as Product, CAST(1425.00 AS money) AS Sales, 19 as Quantity
+UNION SELECT CAST('2009-01-06' AS date) as SalesDate, 'Lauren Johnson' as FullName,'Central' as Territory, 'Accessories' as Subcategory,'Lens Adapter' as Product, CAST(887.50 AS money) AS Sales, 13 as Quantity
+UNION SELECT CAST('2009-01-06' AS date) as SalesDate, 'Warren Pal' as FullName,'North' as Territory, 'Accessories' as Subcategory, 'Lens Adapter' as Product, CAST(607.50 AS money) AS Sales, 9 as Quantity
+UNION SELECT CAST('2009-01-06' AS date) as SalesDate, 'Fernando Ross' as FullName,'South' as Territory, 'Accessories' as Subcategory,'Lens Adapter' as Product, CAST(1215.00 AS money) AS Sales, 18 as Quantity
+UNION SELECT CAST('2009-01-05' AS date) as SalesDate,  'Lauren Johnson' as FullName,'Central' as Territory, 'Digital' as Subcategory,'Compact Digital' as Product, CAST(10191.00 AS money) AS Sales, 79 as Quantity
+UNION SELECT CAST('2009-01-05' AS date) as SalesDate,  'Warren Pal' as FullName,'North' as Territory, 'Digital' as Subcategory, 'Compact Digital' as Product, CAST(8772.00 AS money) AS Sales, 68 as Quantity
+UNION SELECT CAST('2009-01-05' AS date) as SalesDate,  'Fernando Ross' as FullName,'South' as Territory, 'Digital' as Subcategory, 'Compact Digital' as Product, CAST(10578.00 AS money) AS Sales, 82 as Quantity
+UNION SELECT CAST('2009-01-05' AS date) as SalesDate, 'Lauren Johnson' as FullName,'Central' as Territory,'Digital' as Subcategory, 'Slim Digital' as Product, CAST(7218.10 AS money) AS Sales, 38 as Quantity
+UNION SELECT CAST('2009-01-05' AS date) as SalesDate, 'Warren Pal' as FullName,'North' as Territory,'Digital' as Subcategory, 'Slim Digital' as Product, CAST(8357.80 AS money) AS Sales, 44 as Quantity
+UNION SELECT CAST('2009-01-05' AS date) as SalesDate, 'Fernando Ross' as FullName,'South' as Territory,'Digital' as Subcategory,'Slim Digital' as Product, CAST(9307.55 AS money) AS Sales, 49 as Quantity
+UNION SELECT CAST('2009-01-06' AS date) as SalesDate,  'Lauren Johnson' as FullName,'Central' as Territory, 'Digital' as Subcategory,'Compact Digital' as Product, CAST(3870.00 AS money) AS Sales, 30 as Quantity
+UNION SELECT CAST('2009-01-06' AS date) as SalesDate,  'Warren Pal' as FullName,'North' as Territory, 'Digital' as Subcategory,'Compact Digital' as Product, CAST(5805.00 AS money) AS Sales, 45 as Quantity
+UNION SELECT CAST('2009-01-06' AS date) as SalesDate,  'Fernando Ross' as FullName,'South' as Territory, 'Digital' as Subcategory, 'Compact Digital' as Product, CAST(8643.00 AS money) AS Sales, 67 as Quantity
+UNION SELECT CAST('2009-01-06' AS date) as SalesDate, 'Lauren Johnson' as FullName,'Central' as Territory, 'Digital' as Subcategory, 'Slim Digital' as Product, CAST(9877.40 AS money) AS Sales, 52 as Quantity
+UNION SELECT CAST('2009-01-06' AS date) as SalesDate, 'Warren Pal' as FullName,'North' as Territory, 'Digital' as Subcategory, 'Slim Digital' as Product, CAST(12536.70 AS money) AS Sales, 66 as Quantity
+UNION SELECT CAST('2009-01-06' AS date) as SalesDate, 'Fernando Ross' as FullName,'South' as Territory, 'Digital' as Subcategory, 'Slim Digital' as Product, CAST(6648.25 AS money) AS Sales, 35 as Quantity</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="SalesDate">
+          <DataField>SalesDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="FullName">
+          <DataField>FullName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Territory">
+          <DataField>Territory</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Subcategory">
+          <DataField>Subcategory</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Product">
+          <DataField>Product</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Sales">
+          <DataField>Sales</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="Quantity">
+          <DataField>Quantity</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="Tablix1">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>6.375in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>7.09708in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Rectangle Name="Rectangle1">
+                          <ReportItems>
+                            <Rectangle Name="Rectangle2">
+                              <KeepTogether>true</KeepTogether>
+                              <Top>1.22917in</Top>
+                              <Left>0.04166in</Left>
+                              <Height>5.66791in</Height>
+                              <Width>0.66667in</Width>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <BackgroundColor>SlateGray</BackgroundColor>
+                              </Style>
+                            </Rectangle>
+                            <Textbox Name="Textbox2">
+                              <CanGrow>true</CanGrow>
+                              <KeepTogether>true</KeepTogether>
+                              <Paragraphs>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>Newsletter for </Value>
+                                      <Style>
+                                        <FontFamily>Times New Roman</FontFamily>
+                                        <FontSize>20pt</FontSize>
+                                        <Color>Maroon</Color>
+                                      </Style>
+                                    </TextRun>
+                                    <TextRun>
+                                      <Value>=Fields!Territory.Value</Value>
+                                      <Style>
+                                        <FontFamily>Times New Roman</FontFamily>
+                                        <FontSize>20pt</FontSize>
+                                        <Color>Maroon</Color>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>Hello </Value>
+                                      <Style>
+                                        <FontFamily>Times New Roman</FontFamily>
+                                        <FontSize>16pt</FontSize>
+                                        <Color>SlateGray</Color>
+                                      </Style>
+                                    </TextRun>
+                                    <TextRun>
+                                      <Value>=Fields!FullName.Value</Value>
+                                      <Style>
+                                        <FontFamily>Times New Roman</FontFamily>
+                                        <FontSize>16pt</FontSize>
+                                        <Color>SlateGray</Color>
+                                      </Style>
+                                    </TextRun>
+                                    <TextRun>
+                                      <Value>,</Value>
+                                      <Style>
+                                        <FontFamily>Times New Roman</FontFamily>
+                                        <FontSize>16pt</FontSize>
+                                        <Color>SlateGray</Color>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                                <Paragraph>
+                                  <TextRuns>
+                                    <TextRun>
+                                      <Value>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sed dolor in ipsum pulvinar egestas. Sed sed lacus at leo ornare ultricies. Vivamus velit risus, euismod nec sodales gravida, gravida in dui. Etiam ullamcorper elit vitae justo fermentum ut ullamcorper augue sodales. Ut placerat, nisl quis feugiat adipiscing, nibh est aliquet est, mollis faucibus mauris lectus quis arcu. In mollis tincidunt lacinia. In vitae erat ut lorem tincidunt luctus. Curabitur et magna nunc, sit amet adipiscing nisi. Nulla rhoncus elementum orci nec tincidunt. Aliquam imperdiet cursus erat vel tincidunt. Donec et neque ac urna rutrum sodales. In id purus et nisl dignissim dapibus. Sed rhoncus metus at felis feugiat eu tempor dolor vehicula. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam faucibus consectetur diam eu pellentesque. 
+Nulla facilisi. Proin ligula enim, porta ut tincidunt id, adipiscing sit amet eros. Ut purus sem, bibendum et vulputate sit amet, facilisis eget magna. Sed aliquam erat non erat eleifend hendrerit. Ut a ligula est, sit amet eleifend enim. Ut et nisl enim, sit amet adipiscing augue. Vivamus eu arcu ac libero posuere elementum. Integer condimentum bibendum venenatis. Integer odio tellus, feugiat in pellentesque semper, interdum nec sem. Sed cursus euismod sem, ut elementum sapien placerat vel. 
+</Value>
+                                      <Style />
+                                    </TextRun>
+                                    <TextRun>
+                                      <Value>Congratulations on your sales of </Value>
+                                      <Style>
+                                        <FontFamily>Times New Roman</FontFamily>
+                                        <FontSize>16pt</FontSize>
+                                        <Color>Maroon</Color>
+                                      </Style>
+                                    </TextRun>
+                                    <TextRun>
+                                      <Value>=Sum(Fields!Sales.Value)</Value>
+                                      <Style>
+                                        <FontFamily>Times New Roman</FontFamily>
+                                        <FontSize>16pt</FontSize>
+                                        <Format>'$'#,0.00;('$'#,0.00)</Format>
+                                        <Color>Maroon</Color>
+                                      </Style>
+                                    </TextRun>
+                                    <TextRun>
+                                      <Value>!</Value>
+                                      <Style>
+                                        <FontFamily>Times New Roman</FontFamily>
+                                        <FontSize>16pt</FontSize>
+                                        <Format>'$'#,0.00;('$'#,0.00)</Format>
+                                        <Color>Maroon</Color>
+                                      </Style>
+                                    </TextRun>
+                                  </TextRuns>
+                                  <Style />
+                                </Paragraph>
+                              </Paragraphs>
+                              <rd:DefaultName>Textbox2</rd:DefaultName>
+                              <Top>0.01042in</Top>
+                              <Left>0.75in</Left>
+                              <Height>3.47791in</Height>
+                              <Width>5.625in</Width>
+                              <ZIndex>1</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingRight>2pt</PaddingRight>
+                                <PaddingTop>2pt</PaddingTop>
+                                <PaddingBottom>2pt</PaddingBottom>
+                              </Style>
+                            </Textbox>
+                            <Tablix Name="Tablix2">
+                              <TablixBody>
+                                <TablixColumns>
+                                  <TablixColumn>
+                                    <Width>0.97916in</Width>
+                                  </TablixColumn>
+                                  <TablixColumn>
+                                    <Width>0.94792in</Width>
+                                  </TablixColumn>
+                                  <TablixColumn>
+                                    <Width>0.76042in</Width>
+                                  </TablixColumn>
+                                  <TablixColumn>
+                                    <Width>0.82292in</Width>
+                                  </TablixColumn>
+                                </TablixColumns>
+                                <TablixRows>
+                                  <TablixRow>
+                                    <Height>0.25in</Height>
+                                    <TablixCells>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Textbox3">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>Product</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                      <FontSize>11pt</FontSize>
+                                                      <FontWeight>Bold</FontWeight>
+                                                      <Color>White</Color>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style />
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox3</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>#949ca4</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <BackgroundColor>#7c8692</BackgroundColor>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Textbox4">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>Sales Date</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                      <FontSize>11pt</FontSize>
+                                                      <FontWeight>Bold</FontWeight>
+                                                      <Color>White</Color>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style />
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox4</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>#949ca4</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <BackgroundColor>#7c8692</BackgroundColor>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Textbox6">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>Quantity</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                      <FontSize>11pt</FontSize>
+                                                      <FontWeight>Bold</FontWeight>
+                                                      <Color>White</Color>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style />
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox6</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>#949ca4</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <BackgroundColor>#7c8692</BackgroundColor>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Textbox8">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>Sales</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                      <FontSize>11pt</FontSize>
+                                                      <FontWeight>Bold</FontWeight>
+                                                      <Format>'$'#,0.00;('$'#,0.00)</Format>
+                                                      <Color>White</Color>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style />
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Textbox8</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>#949ca4</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <BackgroundColor>#7c8692</BackgroundColor>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                    </TablixCells>
+                                  </TablixRow>
+                                  <TablixRow>
+                                    <Height>0.25in</Height>
+                                    <TablixCells>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Product">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Fields!Product.Value</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                      <Color>#4d4d4d</Color>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style />
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Product</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>#e5e5e5</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="SalesDate">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Fields!SalesDate.Value</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                      <Format>d</Format>
+                                                      <Color>#4d4d4d</Color>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style />
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>SalesDate</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>#e5e5e5</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Quantity">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Sum(Fields!Quantity.Value)</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                      <Color>#4d4d4d</Color>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style />
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Quantity</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>#e5e5e5</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                      <TablixCell>
+                                        <CellContents>
+                                          <Textbox Name="Sales">
+                                            <CanGrow>true</CanGrow>
+                                            <KeepTogether>true</KeepTogether>
+                                            <Paragraphs>
+                                              <Paragraph>
+                                                <TextRuns>
+                                                  <TextRun>
+                                                    <Value>=Sum(Fields!Sales.Value)</Value>
+                                                    <Style>
+                                                      <FontFamily>Tahoma</FontFamily>
+                                                      <Format>'$'#,0.00;('$'#,0.00)</Format>
+                                                      <Color>#4d4d4d</Color>
+                                                    </Style>
+                                                  </TextRun>
+                                                </TextRuns>
+                                                <Style />
+                                              </Paragraph>
+                                            </Paragraphs>
+                                            <rd:DefaultName>Sales</rd:DefaultName>
+                                            <Style>
+                                              <Border>
+                                                <Color>#e5e5e5</Color>
+                                                <Style>Solid</Style>
+                                              </Border>
+                                              <PaddingLeft>2pt</PaddingLeft>
+                                              <PaddingRight>2pt</PaddingRight>
+                                              <PaddingTop>2pt</PaddingTop>
+                                              <PaddingBottom>2pt</PaddingBottom>
+                                            </Style>
+                                          </Textbox>
+                                        </CellContents>
+                                      </TablixCell>
+                                    </TablixCells>
+                                  </TablixRow>
+                                </TablixRows>
+                              </TablixBody>
+                              <TablixColumnHierarchy>
+                                <TablixMembers>
+                                  <TablixMember />
+                                  <TablixMember />
+                                  <TablixMember />
+                                  <TablixMember />
+                                </TablixMembers>
+                              </TablixColumnHierarchy>
+                              <TablixRowHierarchy>
+                                <TablixMembers>
+                                  <TablixMember>
+                                    <KeepWithGroup>After</KeepWithGroup>
+                                  </TablixMember>
+                                  <TablixMember>
+                                    <Group Name="Details" />
+                                  </TablixMember>
+                                </TablixMembers>
+                              </TablixRowHierarchy>
+                              <DataSetName>ListDataset</DataSetName>
+                              <Top>3.62722in</Top>
+                              <Left>0.75in</Left>
+                              <Height>0.5in</Height>
+                              <Width>3.51042in</Width>
+                              <ZIndex>2</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                              </Style>
+                            </Tablix>
+                            <Line Name="Line1">
+                              <Top>3.55777in</Top>
+                              <Left>0.78in</Left>
+                              <Height>0in</Height>
+                              <Width>5.595in</Width>
+                              <ZIndex>3</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Color>Maroon</Color>
+                                  <Style>Solid</Style>
+                                  <Width>3pt</Width>
+                                </Border>
+                                <TopBorder>
+                                  <Color>Maroon</Color>
+                                  <Width>3pt</Width>
+                                </TopBorder>
+                                <BottomBorder>
+                                  <Color>Maroon</Color>
+                                  <Width>3pt</Width>
+                                </BottomBorder>
+                                <LeftBorder>
+                                  <Color>Maroon</Color>
+                                  <Width>3pt</Width>
+                                </LeftBorder>
+                                <RightBorder>
+                                  <Color>Maroon</Color>
+                                  <Width>3pt</Width>
+                                </RightBorder>
+                              </Style>
+                            </Line>
+                            <Rectangle Name="Rectangle3">
+                              <KeepTogether>true</KeepTogether>
+                              <Top>0.01042in</Top>
+                              <Left>0.04166in</Left>
+                              <Height>0.47in</Height>
+                              <Width>0.66667in</Width>
+                              <ZIndex>4</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <BackgroundColor>SlateGray</BackgroundColor>
+                              </Style>
+                            </Rectangle>
+                            <Image Name="Image1">
+                              <Source>Embedded</Source>
+                              <Value>LogoRed</Value>
+                              <Sizing>FitProportional</Sizing>
+                              <Top>0.51958in</Top>
+                              <Left>0.07167in</Left>
+                              <Height>0.65403in</Height>
+                              <Width>0.60889in</Width>
+                              <ZIndex>5</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                              </Style>
+                            </Image>
+                            <Rectangle Name="Rectangle5">
+                              <ReportItems>
+                                <Chart Name="Chart2">
+                                  <ChartCategoryHierarchy>
+                                    <ChartMembers>
+                                      <ChartMember>
+                                        <Group Name="Chart2_CategoryGroup">
+                                          <GroupExpressions>
+                                            <GroupExpression>=Fields!Product.Value</GroupExpression>
+                                          </GroupExpressions>
+                                        </Group>
+                                        <SortExpressions>
+                                          <SortExpression>
+                                            <Value>=Fields!Product.Value</Value>
+                                          </SortExpression>
+                                        </SortExpressions>
+                                        <Label>=Fields!Product.Value</Label>
+                                      </ChartMember>
+                                    </ChartMembers>
+                                  </ChartCategoryHierarchy>
+                                  <ChartSeriesHierarchy>
+                                    <ChartMembers>
+                                      <ChartMember>
+                                        <Label>Quantity</Label>
+                                      </ChartMember>
+                                    </ChartMembers>
+                                  </ChartSeriesHierarchy>
+                                  <ChartData>
+                                    <ChartSeriesCollection>
+                                      <ChartSeries Name="Quantity">
+                                        <ChartDataPoints>
+                                          <ChartDataPoint>
+                                            <ChartDataPointValues>
+                                              <Y>=Sum(Fields!Quantity.Value)</Y>
+                                            </ChartDataPointValues>
+                                            <ChartDataLabel>
+                                              <Style>
+                                                <FontFamily>Tahoma</FontFamily>
+                                                <FontSize>8pt</FontSize>
+                                              </Style>
+                                            </ChartDataLabel>
+                                            <ToolTip>#VALY</ToolTip>
+                                            <Style />
+                                            <ChartMarker>
+                                              <Style />
+                                            </ChartMarker>
+                                            <DataElementOutput>Output</DataElementOutput>
+                                          </ChartDataPoint>
+                                        </ChartDataPoints>
+                                        <Type>Shape</Type>
+                                        <Style>
+                                          <ShadowOffset>1.5pt</ShadowOffset>
+                                        </Style>
+                                        <ChartEmptyPoints>
+                                          <Style />
+                                          <ChartMarker>
+                                            <Style />
+                                          </ChartMarker>
+                                          <ChartDataLabel>
+                                            <Style />
+                                          </ChartDataLabel>
+                                        </ChartEmptyPoints>
+                                        <CustomProperties>
+                                          <CustomProperty>
+                                            <Name>PieDrawingStyle</Name>
+                                            <Value>Concave</Value>
+                                          </CustomProperty>
+                                        </CustomProperties>
+                                        <ValueAxisName>Primary</ValueAxisName>
+                                        <CategoryAxisName>Primary</CategoryAxisName>
+                                        <ChartSmartLabel>
+                                          <CalloutLineColor>Black</CalloutLineColor>
+                                          <MinMovingDistance>0pt</MinMovingDistance>
+                                        </ChartSmartLabel>
+                                      </ChartSeries>
+                                    </ChartSeriesCollection>
+                                  </ChartData>
+                                  <ChartAreas>
+                                    <ChartArea Name="Default">
+                                      <ChartCategoryAxes>
+                                        <ChartAxis Name="Primary">
+                                          <Style>
+                                            <Border>
+                                              <Color>LightGrey</Color>
+                                            </Border>
+                                            <FontFamily>Tahoma</FontFamily>
+                                            <FontSize>8pt</FontSize>
+                                          </Style>
+                                          <ChartAxisTitle>
+                                            <Caption>Axis Title</Caption>
+                                            <Style>
+                                              <FontFamily>Tahoma</FontFamily>
+                                              <FontSize>8pt</FontSize>
+                                            </Style>
+                                          </ChartAxisTitle>
+                                          <ChartMajorGridLines>
+                                            <Enabled>False</Enabled>
+                                            <Style>
+                                              <Border>
+                                                <Color>Gainsboro</Color>
+                                              </Border>
+                                            </Style>
+                                          </ChartMajorGridLines>
+                                          <ChartMinorGridLines>
+                                            <Style>
+                                              <Border>
+                                                <Color>Gainsboro</Color>
+                                                <Style>Dotted</Style>
+                                              </Border>
+                                            </Style>
+                                          </ChartMinorGridLines>
+                                          <ChartMajorTickMarks>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                              </Border>
+                                            </Style>
+                                          </ChartMajorTickMarks>
+                                          <ChartMinorTickMarks>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                              </Border>
+                                            </Style>
+                                            <Length>0.5</Length>
+                                          </ChartMinorTickMarks>
+                                          <CrossAt>NaN</CrossAt>
+                                          <Minimum>NaN</Minimum>
+                                          <Maximum>NaN</Maximum>
+                                          <ChartAxisScaleBreak>
+                                            <Style />
+                                          </ChartAxisScaleBreak>
+                                        </ChartAxis>
+                                        <ChartAxis Name="Secondary">
+                                          <Style>
+                                            <Border>
+                                              <Color>LightGrey</Color>
+                                            </Border>
+                                            <FontFamily>Tahoma</FontFamily>
+                                            <FontSize>8pt</FontSize>
+                                          </Style>
+                                          <ChartAxisTitle>
+                                            <Caption>Axis Title</Caption>
+                                            <Style>
+                                              <FontFamily>Tahoma</FontFamily>
+                                              <FontSize>8pt</FontSize>
+                                            </Style>
+                                          </ChartAxisTitle>
+                                          <ChartMajorGridLines>
+                                            <Enabled>False</Enabled>
+                                            <Style>
+                                              <Border>
+                                                <Color>Gainsboro</Color>
+                                              </Border>
+                                            </Style>
+                                          </ChartMajorGridLines>
+                                          <ChartMinorGridLines>
+                                            <Style>
+                                              <Border>
+                                                <Color>Gainsboro</Color>
+                                                <Style>Dotted</Style>
+                                              </Border>
+                                            </Style>
+                                          </ChartMinorGridLines>
+                                          <ChartMajorTickMarks>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                              </Border>
+                                            </Style>
+                                          </ChartMajorTickMarks>
+                                          <ChartMinorTickMarks>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                              </Border>
+                                            </Style>
+                                            <Length>0.5</Length>
+                                          </ChartMinorTickMarks>
+                                          <CrossAt>NaN</CrossAt>
+                                          <Location>Opposite</Location>
+                                          <Minimum>NaN</Minimum>
+                                          <Maximum>NaN</Maximum>
+                                          <ChartAxisScaleBreak>
+                                            <Style />
+                                          </ChartAxisScaleBreak>
+                                        </ChartAxis>
+                                      </ChartCategoryAxes>
+                                      <ChartValueAxes>
+                                        <ChartAxis Name="Primary">
+                                          <Style>
+                                            <Border>
+                                              <Color>LightGrey</Color>
+                                            </Border>
+                                            <FontFamily>Tahoma</FontFamily>
+                                            <FontSize>8pt</FontSize>
+                                          </Style>
+                                          <ChartAxisTitle>
+                                            <Caption>Axis Title</Caption>
+                                            <Style>
+                                              <FontFamily>Tahoma</FontFamily>
+                                              <FontSize>8pt</FontSize>
+                                            </Style>
+                                          </ChartAxisTitle>
+                                          <ChartMajorGridLines>
+                                            <Style>
+                                              <Border>
+                                                <Color>Gainsboro</Color>
+                                              </Border>
+                                            </Style>
+                                          </ChartMajorGridLines>
+                                          <ChartMinorGridLines>
+                                            <Style>
+                                              <Border>
+                                                <Color>Gainsboro</Color>
+                                                <Style>Dotted</Style>
+                                              </Border>
+                                            </Style>
+                                          </ChartMinorGridLines>
+                                          <ChartMajorTickMarks>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                              </Border>
+                                            </Style>
+                                          </ChartMajorTickMarks>
+                                          <ChartMinorTickMarks>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                              </Border>
+                                            </Style>
+                                            <Length>0.5</Length>
+                                          </ChartMinorTickMarks>
+                                          <CrossAt>NaN</CrossAt>
+                                          <Minimum>NaN</Minimum>
+                                          <Maximum>NaN</Maximum>
+                                          <ChartAxisScaleBreak>
+                                            <Style />
+                                          </ChartAxisScaleBreak>
+                                        </ChartAxis>
+                                        <ChartAxis Name="Secondary">
+                                          <Style>
+                                            <Border>
+                                              <Color>LightGrey</Color>
+                                            </Border>
+                                            <FontFamily>Tahoma</FontFamily>
+                                            <FontSize>8pt</FontSize>
+                                          </Style>
+                                          <ChartAxisTitle>
+                                            <Caption>Axis Title</Caption>
+                                            <Style>
+                                              <FontFamily>Tahoma</FontFamily>
+                                              <FontSize>8pt</FontSize>
+                                            </Style>
+                                          </ChartAxisTitle>
+                                          <ChartMajorGridLines>
+                                            <Style>
+                                              <Border>
+                                                <Color>Gainsboro</Color>
+                                              </Border>
+                                            </Style>
+                                          </ChartMajorGridLines>
+                                          <ChartMinorGridLines>
+                                            <Style>
+                                              <Border>
+                                                <Color>Gainsboro</Color>
+                                                <Style>Dotted</Style>
+                                              </Border>
+                                            </Style>
+                                          </ChartMinorGridLines>
+                                          <ChartMajorTickMarks>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                              </Border>
+                                            </Style>
+                                          </ChartMajorTickMarks>
+                                          <ChartMinorTickMarks>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                              </Border>
+                                            </Style>
+                                            <Length>0.5</Length>
+                                          </ChartMinorTickMarks>
+                                          <CrossAt>NaN</CrossAt>
+                                          <Location>Opposite</Location>
+                                          <Minimum>NaN</Minimum>
+                                          <Maximum>NaN</Maximum>
+                                          <ChartAxisScaleBreak>
+                                            <Style />
+                                          </ChartAxisScaleBreak>
+                                        </ChartAxis>
+                                      </ChartValueAxes>
+                                      <Style>
+                                        <BackgroundColor>White</BackgroundColor>
+                                        <BackgroundGradientType>None</BackgroundGradientType>
+                                      </Style>
+                                    </ChartArea>
+                                  </ChartAreas>
+                                  <ChartLegends>
+                                    <ChartLegend Name="Default">
+                                      <Style>
+                                        <Border>
+                                          <Color>#748caa</Color>
+                                        </Border>
+                                        <BackgroundColor>White</BackgroundColor>
+                                        <BackgroundGradientType>TopBottom</BackgroundGradientType>
+                                        <BackgroundGradientEndColor>#cfebfc</BackgroundGradientEndColor>
+                                        <FontFamily>Tahoma</FontFamily>
+                                        <FontSize>8pt</FontSize>
+                                      </Style>
+                                      <ChartLegendTitle>
+                                        <Caption />
+                                        <Style>
+                                          <FontFamily>Tahoma</FontFamily>
+                                          <FontSize>8pt</FontSize>
+                                          <FontWeight>Bold</FontWeight>
+                                          <TextAlign>Center</TextAlign>
+                                        </Style>
+                                      </ChartLegendTitle>
+                                      <HeaderSeparatorColor>Black</HeaderSeparatorColor>
+                                      <ColumnSeparatorColor>Black</ColumnSeparatorColor>
+                                    </ChartLegend>
+                                  </ChartLegends>
+                                  <ChartTitles>
+                                    <ChartTitle Name="Default">
+                                      <Caption>Product Quantities</Caption>
+                                      <Style>
+                                        <BackgroundGradientType>None</BackgroundGradientType>
+                                        <FontFamily>Tahoma</FontFamily>
+                                        <FontWeight>Bold</FontWeight>
+                                        <TextAlign>General</TextAlign>
+                                        <VerticalAlign>Top</VerticalAlign>
+                                      </Style>
+                                    </ChartTitle>
+                                  </ChartTitles>
+                                  <Palette>Custom</Palette>
+                                  <ChartCustomPaletteColors>
+                                    <ChartCustomPaletteColor>#748baa</ChartCustomPaletteColor>
+                                    <ChartCustomPaletteColor>#d5cea2</ChartCustomPaletteColor>
+                                    <ChartCustomPaletteColor>#aab6c4</ChartCustomPaletteColor>
+                                    <ChartCustomPaletteColor>#b3d4d6</ChartCustomPaletteColor>
+                                    <ChartCustomPaletteColor>#bec8ce</ChartCustomPaletteColor>
+                                    <ChartCustomPaletteColor>#717b9f</ChartCustomPaletteColor>
+                                    <ChartCustomPaletteColor>#96a4b2</ChartCustomPaletteColor>
+                                    <ChartCustomPaletteColor>#caafaf</ChartCustomPaletteColor>
+                                    <ChartCustomPaletteColor>#7c8692</ChartCustomPaletteColor>
+                                    <ChartCustomPaletteColor>#aeb898</ChartCustomPaletteColor>
+                                  </ChartCustomPaletteColors>
+                                  <ChartBorderSkin>
+                                    <ChartBorderSkinType>Emboss</ChartBorderSkinType>
+                                    <Style>
+                                      <BackgroundColor>Gray</BackgroundColor>
+                                      <BackgroundGradientType>None</BackgroundGradientType>
+                                      <Color>White</Color>
+                                    </Style>
+                                  </ChartBorderSkin>
+                                  <ChartNoDataMessage Name="NoDataMessage">
+                                    <Caption>No Data Available</Caption>
+                                    <Style>
+                                      <BackgroundGradientType>None</BackgroundGradientType>
+                                      <FontFamily>Tahoma</FontFamily>
+                                      <FontSize>8pt</FontSize>
+                                      <TextAlign>General</TextAlign>
+                                      <VerticalAlign>Top</VerticalAlign>
+                                    </Style>
+                                  </ChartNoDataMessage>
+                                  <DataSetName>ListDataset</DataSetName>
+                                  <Height>1.65625in</Height>
+                                  <Width>2.04514in</Width>
+                                  <Style>
+                                    <Border>
+                                      <Color>#748caa</Color>
+                                      <Style>Solid</Style>
+                                      <Width>2pt</Width>
+                                    </Border>
+                                    <BackgroundColor>#cfebfc</BackgroundColor>
+                                    <BackgroundGradientType>TopBottom</BackgroundGradientType>
+                                  </Style>
+                                </Chart>
+                                <Chart Name="Chart3">
+                                  <ChartCategoryHierarchy>
+                                    <ChartMembers>
+                                      <ChartMember>
+                                        <Group Name="Chart3_CategoryGroup">
+                                          <GroupExpressions>
+                                            <GroupExpression>=Fields!Product.Value</GroupExpression>
+                                          </GroupExpressions>
+                                        </Group>
+                                        <SortExpressions>
+                                          <SortExpression>
+                                            <Value>=Fields!Product.Value</Value>
+                                          </SortExpression>
+                                        </SortExpressions>
+                                        <Label>=Fields!Product.Value</Label>
+                                      </ChartMember>
+                                    </ChartMembers>
+                                  </ChartCategoryHierarchy>
+                                  <ChartSeriesHierarchy>
+                                    <ChartMembers>
+                                      <ChartMember>
+                                        <Label>Sales</Label>
+                                      </ChartMember>
+                                    </ChartMembers>
+                                  </ChartSeriesHierarchy>
+                                  <ChartData>
+                                    <ChartSeriesCollection>
+                                      <ChartSeries Name="Sales">
+                                        <ChartDataPoints>
+                                          <ChartDataPoint>
+                                            <ChartDataPointValues>
+                                              <Y>=Sum(Fields!Sales.Value)</Y>
+                                            </ChartDataPointValues>
+                                            <ChartDataLabel>
+                                              <Style>
+                                                <FontFamily>Tahoma</FontFamily>
+                                                <FontSize>8pt</FontSize>
+                                              </Style>
+                                            </ChartDataLabel>
+                                            <ToolTip>#VALY</ToolTip>
+                                            <Style />
+                                            <ChartMarker>
+                                              <Style />
+                                            </ChartMarker>
+                                            <DataElementOutput>Output</DataElementOutput>
+                                          </ChartDataPoint>
+                                        </ChartDataPoints>
+                                        <Style>
+                                          <ShadowColor>DimGray</ShadowColor>
+                                          <ShadowOffset>1pt</ShadowOffset>
+                                        </Style>
+                                        <ChartEmptyPoints>
+                                          <Style />
+                                          <ChartMarker>
+                                            <Style />
+                                          </ChartMarker>
+                                          <ChartDataLabel>
+                                            <Style />
+                                          </ChartDataLabel>
+                                        </ChartEmptyPoints>
+                                        <ValueAxisName>Primary</ValueAxisName>
+                                        <CategoryAxisName>Primary</CategoryAxisName>
+                                        <ChartSmartLabel>
+                                          <CalloutLineColor>Black</CalloutLineColor>
+                                          <MinMovingDistance>0pt</MinMovingDistance>
+                                        </ChartSmartLabel>
+                                      </ChartSeries>
+                                    </ChartSeriesCollection>
+                                  </ChartData>
+                                  <ChartAreas>
+                                    <ChartArea Name="Default">
+                                      <ChartCategoryAxes>
+                                        <ChartAxis Name="Primary">
+                                          <Style>
+                                            <Border>
+                                              <Color>LightGrey</Color>
+                                            </Border>
+                                            <FontFamily>Tahoma</FontFamily>
+                                            <FontSize>8pt</FontSize>
+                                          </Style>
+                                          <ChartAxisTitle>
+                                            <Caption />
+                                            <Style>
+                                              <FontFamily>Tahoma</FontFamily>
+                                              <FontSize>8pt</FontSize>
+                                            </Style>
+                                          </ChartAxisTitle>
+                                          <ChartMajorGridLines>
+                                            <Enabled>False</Enabled>
+                                            <Style>
+                                              <Border>
+                                                <Color>Gainsboro</Color>
+                                              </Border>
+                                            </Style>
+                                          </ChartMajorGridLines>
+                                          <ChartMinorGridLines>
+                                            <Style>
+                                              <Border>
+                                                <Color>Gainsboro</Color>
+                                                <Style>Dotted</Style>
+                                              </Border>
+                                            </Style>
+                                          </ChartMinorGridLines>
+                                          <ChartMajorTickMarks>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                              </Border>
+                                            </Style>
+                                          </ChartMajorTickMarks>
+                                          <ChartMinorTickMarks>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                              </Border>
+                                            </Style>
+                                            <Length>0.5</Length>
+                                          </ChartMinorTickMarks>
+                                          <CrossAt>NaN</CrossAt>
+                                          <Minimum>NaN</Minimum>
+                                          <Maximum>NaN</Maximum>
+                                          <ChartAxisScaleBreak>
+                                            <Style />
+                                          </ChartAxisScaleBreak>
+                                        </ChartAxis>
+                                        <ChartAxis Name="Secondary">
+                                          <Style>
+                                            <Border>
+                                              <Color>LightGrey</Color>
+                                            </Border>
+                                            <FontFamily>Tahoma</FontFamily>
+                                            <FontSize>8pt</FontSize>
+                                          </Style>
+                                          <ChartAxisTitle>
+                                            <Caption>Axis Title</Caption>
+                                            <Style>
+                                              <FontFamily>Tahoma</FontFamily>
+                                              <FontSize>8pt</FontSize>
+                                            </Style>
+                                          </ChartAxisTitle>
+                                          <ChartMajorGridLines>
+                                            <Enabled>False</Enabled>
+                                            <Style>
+                                              <Border>
+                                                <Color>Gainsboro</Color>
+                                              </Border>
+                                            </Style>
+                                          </ChartMajorGridLines>
+                                          <ChartMinorGridLines>
+                                            <Style>
+                                              <Border>
+                                                <Color>Gainsboro</Color>
+                                                <Style>Dotted</Style>
+                                              </Border>
+                                            </Style>
+                                          </ChartMinorGridLines>
+                                          <ChartMajorTickMarks>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                              </Border>
+                                            </Style>
+                                          </ChartMajorTickMarks>
+                                          <ChartMinorTickMarks>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                              </Border>
+                                            </Style>
+                                            <Length>0.5</Length>
+                                          </ChartMinorTickMarks>
+                                          <CrossAt>NaN</CrossAt>
+                                          <Location>Opposite</Location>
+                                          <Minimum>NaN</Minimum>
+                                          <Maximum>NaN</Maximum>
+                                          <ChartAxisScaleBreak>
+                                            <Style />
+                                          </ChartAxisScaleBreak>
+                                        </ChartAxis>
+                                      </ChartCategoryAxes>
+                                      <ChartValueAxes>
+                                        <ChartAxis Name="Primary">
+                                          <Style>
+                                            <Border>
+                                              <Color>LightGrey</Color>
+                                            </Border>
+                                            <FontFamily>Tahoma</FontFamily>
+                                            <FontSize>8pt</FontSize>
+                                          </Style>
+                                          <ChartAxisTitle>
+                                            <Caption />
+                                            <Style>
+                                              <FontFamily>Tahoma</FontFamily>
+                                              <FontSize>8pt</FontSize>
+                                            </Style>
+                                          </ChartAxisTitle>
+                                          <ChartMajorGridLines>
+                                            <Style>
+                                              <Border>
+                                                <Color>Gainsboro</Color>
+                                              </Border>
+                                            </Style>
+                                          </ChartMajorGridLines>
+                                          <ChartMinorGridLines>
+                                            <Style>
+                                              <Border>
+                                                <Color>Gainsboro</Color>
+                                                <Style>Dotted</Style>
+                                              </Border>
+                                            </Style>
+                                          </ChartMinorGridLines>
+                                          <ChartMajorTickMarks>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                              </Border>
+                                            </Style>
+                                          </ChartMajorTickMarks>
+                                          <ChartMinorTickMarks>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                              </Border>
+                                            </Style>
+                                            <Length>0.5</Length>
+                                          </ChartMinorTickMarks>
+                                          <CrossAt>NaN</CrossAt>
+                                          <Minimum>NaN</Minimum>
+                                          <Maximum>NaN</Maximum>
+                                          <ChartAxisScaleBreak>
+                                            <Style />
+                                          </ChartAxisScaleBreak>
+                                        </ChartAxis>
+                                        <ChartAxis Name="Secondary">
+                                          <Style>
+                                            <Border>
+                                              <Color>LightGrey</Color>
+                                            </Border>
+                                            <FontFamily>Tahoma</FontFamily>
+                                            <FontSize>8pt</FontSize>
+                                          </Style>
+                                          <ChartAxisTitle>
+                                            <Caption>Axis Title</Caption>
+                                            <Style>
+                                              <FontFamily>Tahoma</FontFamily>
+                                              <FontSize>8pt</FontSize>
+                                            </Style>
+                                          </ChartAxisTitle>
+                                          <ChartMajorGridLines>
+                                            <Style>
+                                              <Border>
+                                                <Color>Gainsboro</Color>
+                                              </Border>
+                                            </Style>
+                                          </ChartMajorGridLines>
+                                          <ChartMinorGridLines>
+                                            <Style>
+                                              <Border>
+                                                <Color>Gainsboro</Color>
+                                                <Style>Dotted</Style>
+                                              </Border>
+                                            </Style>
+                                          </ChartMinorGridLines>
+                                          <ChartMajorTickMarks>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                              </Border>
+                                            </Style>
+                                          </ChartMajorTickMarks>
+                                          <ChartMinorTickMarks>
+                                            <Style>
+                                              <Border>
+                                                <Color>LightGrey</Color>
+                                              </Border>
+                                            </Style>
+                                            <Length>0.5</Length>
+                                          </ChartMinorTickMarks>
+                                          <CrossAt>NaN</CrossAt>
+                                          <Location>Opposite</Location>
+                                          <Minimum>NaN</Minimum>
+                                          <Maximum>NaN</Maximum>
+                                          <ChartAxisScaleBreak>
+                                            <Style />
+                                          </ChartAxisScaleBreak>
+                                        </ChartAxis>
+                                      </ChartValueAxes>
+                                      <Style>
+                                        <BackgroundColor>White</BackgroundColor>
+                                        <BackgroundGradientType>None</BackgroundGradientType>
+                                      </Style>
+                                    </ChartArea>
+                                  </ChartAreas>
+                                  <ChartTitles>
+                                    <ChartTitle Name="Default">
+                                      <Caption>Product Sales</Caption>
+                                      <Style>
+                                        <BackgroundGradientType>None</BackgroundGradientType>
+                                        <FontFamily>Tahoma</FontFamily>
+                                        <FontWeight>Bold</FontWeight>
+                                        <TextAlign>General</TextAlign>
+                                        <VerticalAlign>Top</VerticalAlign>
+                                      </Style>
+                                    </ChartTitle>
+                                  </ChartTitles>
+                                  <Palette>Custom</Palette>
+                                  <ChartCustomPaletteColors>
+                                    <ChartCustomPaletteColor>#748baa</ChartCustomPaletteColor>
+                                    <ChartCustomPaletteColor>#d5cea2</ChartCustomPaletteColor>
+                                    <ChartCustomPaletteColor>#aab6c4</ChartCustomPaletteColor>
+                                    <ChartCustomPaletteColor>#b3d4d6</ChartCustomPaletteColor>
+                                    <ChartCustomPaletteColor>#bec8ce</ChartCustomPaletteColor>
+                                    <ChartCustomPaletteColor>#717b9f</ChartCustomPaletteColor>
+                                    <ChartCustomPaletteColor>#96a4b2</ChartCustomPaletteColor>
+                                    <ChartCustomPaletteColor>#caafaf</ChartCustomPaletteColor>
+                                    <ChartCustomPaletteColor>#7c8692</ChartCustomPaletteColor>
+                                    <ChartCustomPaletteColor>#aeb898</ChartCustomPaletteColor>
+                                  </ChartCustomPaletteColors>
+                                  <ChartBorderSkin>
+                                    <ChartBorderSkinType>Emboss</ChartBorderSkinType>
+                                    <Style>
+                                      <BackgroundColor>Gray</BackgroundColor>
+                                      <BackgroundGradientType>None</BackgroundGradientType>
+                                      <Color>White</Color>
+                                    </Style>
+                                  </ChartBorderSkin>
+                                  <ChartNoDataMessage Name="NoDataMessage">
+                                    <Caption>No Data Available</Caption>
+                                    <Style>
+                                      <BackgroundGradientType>None</BackgroundGradientType>
+                                      <FontFamily>Tahoma</FontFamily>
+                                      <FontSize>8pt</FontSize>
+                                      <TextAlign>General</TextAlign>
+                                      <VerticalAlign>Top</VerticalAlign>
+                                    </Style>
+                                  </ChartNoDataMessage>
+                                  <DataSetName>ListDataset</DataSetName>
+                                  <Top>1.68403in</Top>
+                                  <Left>0.05556in</Left>
+                                  <Height>1.78583in</Height>
+                                  <Width>1.98958in</Width>
+                                  <ZIndex>1</ZIndex>
+                                  <Style>
+                                    <Border>
+                                      <Color>#748caa</Color>
+                                      <Style>Solid</Style>
+                                      <Width>2pt</Width>
+                                    </Border>
+                                    <BackgroundColor>#cfebfc</BackgroundColor>
+                                    <BackgroundGradientType>TopBottom</BackgroundGradientType>
+                                  </Style>
+                                </Chart>
+                              </ReportItems>
+                              <KeepTogether>true</KeepTogether>
+                              <Top>3.57166in</Top>
+                              <Left>4.32986in</Left>
+                              <Height>3.46986in</Height>
+                              <Width>2.04514in</Width>
+                              <ZIndex>6</ZIndex>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                              </Style>
+                            </Rectangle>
+                          </ReportItems>
+                          <PageBreak>
+                            <BreakLocation>End</BreakLocation>
+                          </PageBreak>
+                          <KeepTogether>true</KeepTogether>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                          </Style>
+                        </Rectangle>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="Territory">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!Territory.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!Territory.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixMembers>
+                    <TablixMember />
+                  </TablixMembers>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>ListDataset</DataSetName>
+            <Top>0.01042in</Top>
+            <Height>7.09708in</Height>
+            <Width>6.375in</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+        </ReportItems>
+        <Height>7.1075in</Height>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Body>
+      <Width>6.46875in</Width>
+      <Page>
+        <PageFooter>
+          <Height>0.56458in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="ExecutionTime">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Globals!ExecutionTime</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>ExecutionTime</rd:DefaultName>
+              <Top>0.13826in</Top>
+              <Left>0.04166in</Left>
+              <Height>0.25in</Height>
+              <Width>2in</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox7">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Page  </Value>
+                      <Style />
+                    </TextRun>
+                    <TextRun>
+                      <Value>=Globals!OverallPageNumber</Value>
+                      <Style />
+                    </TextRun>
+                    <TextRun>
+                      <Value> of </Value>
+                      <Style />
+                    </TextRun>
+                    <TextRun>
+                      <Value>=Globals!OverallTotalPages</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox4</rd:DefaultName>
+              <Top>0.13826in</Top>
+              <Left>3.00917in</Left>
+              <Height>0.25in</Height>
+              <Width>3.36583in</Width>
+              <ZIndex>1</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageFooter>
+        <LeftMargin>1in</LeftMargin>
+        <RightMargin>1in</RightMargin>
+        <TopMargin>1in</TopMargin>
+        <BottomMargin>1in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <EmbeddedImages>
+    <EmbeddedImage Name="LogoRed">
+      <MIMEType>image/jpeg</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>b0c30f14-0d27-4bb3-aae8-4f5ce76f21f4</rd:ReportID>
+</Report>

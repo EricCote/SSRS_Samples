@@ -1,0 +1,406 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition">
+  <Description>This sample shows how to mix formatting inside of a single text box.</Description>
+  <DataSources>
+    <DataSource Name="AdventureWorksOffline">
+      <ConnectionProperties>
+        <DataProvider>XML</DataProvider>
+        <ConnectString />
+        <IntegratedSecurity>true</IntegratedSecurity>
+      </ConnectionProperties>
+      <rd:DataSourceID>25f7ec74-d419-47a2-b6bf-9a919209daae</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="AWDataSet">
+      <Fields>
+        <Field Name="SalesPersonID">
+          <DataField>SalesPersonID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="FullName">
+          <DataField>FullName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Title">
+          <DataField>Title</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="SalesTerritory">
+          <DataField>SalesTerritory</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Y2002">
+          <DataField>Y2002</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="Y2003">
+          <DataField>Y2003</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="Y2004">
+          <DataField>Y2004</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="LastModifiedOn">
+          <DataField>LastModifiedOn</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>AdventureWorksOffline</DataSourceName>
+        <CommandText>&lt;Query&gt;
+&lt;ElementPath&gt;Root /S {@SalesPersonID (Integer), @FullName, @Title, @SalesTerritory, @Y2002 (Float), @Y2003 (Float), @Y2004 (Float), @LastModifiedOn(Date)}
+&lt;/ElementPath&gt;
+&lt;XmlData&gt;
+&lt;Root&gt;
+
+&lt;S SalesPersonID="280" FullName="Pamela O Ansman-Wolfe" Title="Sales Representative" SalesTerritory="Northwest" Y2002="1473076.9138" Y2003="900368.5797" Y2004="1656492.8626" LastModifiedOn="1999-01-13T00:00:00"/&gt;
+&lt;S SalesPersonID="281" FullName="Shu K Ito" Title="Sales Representative" SalesTerritory="Southwest" Y2003="2870320.8578" Y2004="3018725.4858" LastModifiedOn="1999-01-13T00:00:00"/&gt;
+&lt;S SalesPersonID="282" FullName="José Edvaldo Saraiva" Title="Sales Representative" SalesTerritory="Canada" Y2002="2532500.9127" Y2003="1488793.3386" Y2004="3189356.2465" LastModifiedOn="1999-01-13T00:00:00"/&gt;
+&lt;S SalesPersonID="283" FullName="David R Campbell" Title="Sales Representative" SalesTerritory="Northwest" Y2002="1243580.7691" Y2003="1377431.3288" Y2004="1930885.5631" LastModifiedOn="1999-01-13T00:00:00"/&gt;
+&lt;S SalesPersonID="287" FullName="Tete A Mensa-Annan" Title="Sales Representative" SalesTerritory="Northwest" Y2003="883338.7107" Y2004="1931620.1835" LastModifiedOn="1999-01-13T00:00:00"/&gt;
+&lt;S SalesPersonID="275" FullName="Michael G Blythe" Title="Sales Representative" SalesTerritory="Northeast" Y2002="1951086.8256" Y2003="4743906.8935" Y2004="4557045.0459" LastModifiedOn="1999-01-13T00:00:00"/&gt;
+&lt;S SalesPersonID="276" FullName="Linda C Mitchell" Title="Sales Representative" SalesTerritory="Southwest" Y2002="2800029.1538" Y2003="4647225.4431" Y2004="5200475.2311" LastModifiedOn="1999-01-13T00:00:00"/&gt;
+&lt;S SalesPersonID="277" FullName="Jillian Carson" Title="Sales Representative" SalesTerritory="Central" Y2002="3308895.8507" Y2003="4991867.7074" Y2004="3857163.6331" LastModifiedOn="1999-01-13T00:00:00"/&gt;
+&lt;S SalesPersonID="278" FullName="Garrett R Vargas" Title="Sales Representative" SalesTerritory="Canada" Y2002="1135639.2632" Y2003="1480136.0065" Y2004="1764938.9857" LastModifiedOn="1999-01-13T00:00:00"/&gt;
+&lt;S SalesPersonID="279" FullName="Tsvi Michael Reiter" Title="Sales Representative" SalesTerritory="Southeast" Y2002="3242697.0127" Y2003="2661156.2418" Y2004="2811012.7150" LastModifiedOn="1999-01-13T00:00:00"/&gt;
+&lt;/Root&gt;
+&lt;/XmlData&gt;
+&lt;/Query&gt;</CommandText>
+      </Query>
+    </DataSet>
+  </DataSets>
+  <Body>
+    <ReportItems>
+      <Textbox Name="textbox8">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Mixed Formatting within a Single Textbox</Value>
+                <Style>
+                  <FontSize>16pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <Top>0.375in</Top>
+        <Left>0.375in</Left>
+        <Height>0.375in</Height>
+        <Width>6.25in</Width>
+        <DataElementOutput>NoOutput</DataElementOutput>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="textbox7">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>You can format the colors, fonts, actions of any text within the textbox by highlighting and right-clicking the text, and bringing up the Text Properties. </Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>The following text is formatted inside of a single textbox:
+</Value>
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <Top>0.75in</Top>
+        <Left>0.375in</Left>
+        <Height>0.98958in</Height>
+        <Width>4.30208in</Width>
+        <ZIndex>1</ZIndex>
+        <DataElementOutput>NoOutput</DataElementOutput>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox1">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Microsoft SQL Server Reporting Services</Value>
+                <Style>
+                  <FontStyle>Normal</FontStyle>
+                  <FontSize>16pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>CornflowerBlue</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style />
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Advanced Report Authoring</Value>
+                <Style>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Leverage </Value>
+                <Style>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>powerful design tools</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value> to author reports accommodating any reporting need. Empower every business user with interactive, personalized, and relevant reports or simply enable them to build their own reports. </Value>
+                <Style>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <ListLevel>1</ListLevel>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value xml:space="preserve">
+</Value>
+                <Style>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>Central Manageability</Value>
+                <Style>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value />
+                <Style>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Enjoy central manageability of the enterprise reporting platform. Handle all report management, processing, and delivery from </Value>
+                <Style>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>one central location</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>, providing increased consistency and improved performance throughout the reporting process.
+</Value>
+                <Style>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <ListLevel>1</ListLevel>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Scalable, Enterprise-Wide Delivery</Value>
+                <Style>
+                  <FontSize>12pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>
+Enable </Value>
+                <Style>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>on-demand report delivery</Value>
+                <Style>
+                  <FontWeight>Bold</FontWeight>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>, deploy </Value>
+                <Style>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>event-based report distribution</Value>
+                <Style>
+                  <TextDecoration>Underline</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>, and directly embed reports in business applications. Automate effective delivery of real-time information that helps drive better business decisions for users across the entire enterprise.</Value>
+                <Style>
+                  <TextDecoration>None</TextDecoration>
+                  <Color>#000000</Color>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <ListLevel>1</ListLevel>
+            <Style>
+              <TextAlign>Left</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <Top>1.9375in</Top>
+        <Left>0.375in</Left>
+        <Height>3.75in</Height>
+        <Width>5.55208in</Width>
+        <ZIndex>2</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+    </ReportItems>
+    <Height>12.25in</Height>
+    <Style />
+  </Body>
+  <Width>8.0253in</Width>
+  <Page>
+    <LeftMargin>1in</LeftMargin>
+    <RightMargin>1in</RightMargin>
+    <TopMargin>1in</TopMargin>
+    <BottomMargin>1in</BottomMargin>
+    <Style />
+  </Page>
+  <Language>en-US</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportID>5f9514b2-4429-47cc-97a5-b1bd6d3c282c</rd:ReportID>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+</Report>

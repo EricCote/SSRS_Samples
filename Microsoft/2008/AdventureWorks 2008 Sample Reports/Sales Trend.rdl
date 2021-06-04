@@ -1,0 +1,1115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Description>AdventureWorks sales trend analysis that compares year over year (Y/Y) growth for products by category and subcategory. This report illustrates the following features: a Tablix with conditionally hidden static columns, repeat column and row headers, and KeepTogether static Tablix member; the aggregate function Previous that calculates Y/Y trends; custom code; conditional font, background cell color, KPI images, and drillthrough parameters.</Description>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="AdventureWorks">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString>Data Source=(local);Initial Catalog=AdventureWorks2019</ConnectString>
+        <IntegratedSecurity>true</IntegratedSecurity>
+      </ConnectionProperties>
+      <rd:SecurityType>Integrated</rd:SecurityType>
+      <rd:DataSourceID>b83ccf3e-ff74-4d98-a81b-91c2bc729e27</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="Sales">
+      <Query>
+        <DataSourceName>AdventureWorks</DataSourceName>
+        <CommandText>SET DATEFORMAT mdy
+SELECT     
+   PC.Name AS Category, PS.Name AS Subcategory, 
+   DATEPART(yy, SOH.OrderDate) AS OrderYear, 
+   'Q' + DATENAME(qq, SOH.OrderDate) AS OrderQtr, 
+   SUM(SOD.UnitPrice * SOD.OrderQty) AS Sales, 
+   PC.ProductCategoryID, PS.ProductSubcategoryID--, 
+   --ST.Name AS SalesTerritory, ST.CountryRegionCode AS CountryRegion
+FROM 
+   Production.ProductSubcategory AS PS INNER JOIN
+      Sales.SalesOrderHeader AS SOH INNER JOIN
+         Sales.SalesOrderDetail AS SOD ON SOH.SalesOrderID = SOD.SalesOrderID INNER JOIN
+         Production.Product AS P ON SOD.ProductID = P.ProductID 
+	   ON PS.ProductSubcategoryID = P.ProductSubcategoryID  INNER JOIN
+       Production.ProductCategory AS PC ON PS.ProductCategoryID = PC.ProductCategoryID -- INNER JOIN
+       --Sales.SalesTerritory AS ST ON ST.TerritoryID = SOH.TerritoryID
+WHERE (SOH.OrderDate BETWEEN '07/01/2012' AND '06/30/2014')
+   GROUP BY DATEPART(yy, SOH.OrderDate), PC.Name, PS.Name, 
+      'Q' + DATENAME(qq, SOH.OrderDate), 
+      PS.ProductSubcategoryID, PC.ProductCategoryID--, 
+      --ST.Name, ST.CountryRegionCode</CommandText>
+        <Timeout>30</Timeout>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="Category">
+          <DataField>Category</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Subcategory">
+          <DataField>Subcategory</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="OrderYear">
+          <DataField>OrderYear</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="OrderQtr">
+          <DataField>OrderQtr</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Sales">
+          <DataField>Sales</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+        <Field Name="ProductCategoryID">
+          <DataField>ProductCategoryID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ProductSubcategoryID">
+          <DataField>ProductSubcategoryID</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="SalesMatrix">
+            <TablixCorner>
+              <TablixCornerRows>
+                <TablixCornerRow>
+                  <TablixCornerCell>
+                    <CellContents>
+                      <Textbox Name="Textbox359">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>Products by </Value>
+                                <Style>
+                                  <FontSize>11pt</FontSize>
+                                  <FontWeight>Bold</FontWeight>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
+                          </Paragraph>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>Subcategory, Quarter </Value>
+                                <Style>
+                                  <FontStyle>Italic</FontStyle>
+                                  <FontSize>11pt</FontSize>
+                                  <FontWeight>Bold</FontWeight>
+                                </Style>
+                              </TextRun>
+                              <TextRun>
+                                <Value>&amp; </Value>
+                                <Style>
+                                  <FontSize>11pt</FontSize>
+                                  <FontWeight>Bold</FontWeight>
+                                </Style>
+                              </TextRun>
+                              <TextRun>
+                                <Value>Trend</Value>
+                                <Style>
+                                  <FontStyle>Italic</FontStyle>
+                                  <FontSize>11pt</FontSize>
+                                  <FontWeight>Bold</FontWeight>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
+                          </Paragraph>
+                        </Paragraphs>
+                        <Style>
+                          <Border>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>LightSteelBlue</BackgroundColor>
+                          <VerticalAlign>Middle</VerticalAlign>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                      <ColSpan>2</ColSpan>
+                      <RowSpan>2</RowSpan>
+                    </CellContents>
+                  </TablixCornerCell>
+                  <TablixCornerCell />
+                </TablixCornerRow>
+                <TablixCornerRow>
+                  <TablixCornerCell />
+                  <TablixCornerCell />
+                </TablixCornerRow>
+              </TablixCornerRows>
+            </TablixCorner>
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>0.76042in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.79167in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.67708in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>0.17708in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.23958in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Sales">
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!Sales.Value)</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <Format>C0</Format>
+                                    <TextDecoration>Underline</TextDecoration>
+                                    <Color>Blue</Color>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <ActionInfo>
+                            <Actions>
+                              <Action>
+                                <Drillthrough>
+                                  <ReportName>=IIF(Fields!OrderYear.Value IS NOTHING, NOTHING, "Product Line Sales")</ReportName>
+                                  <Parameters>
+                                    <Parameter Name="ProductCategory">
+                                      <Value>=Fields!ProductCategoryID.Value</Value>
+                                    </Parameter>
+                                    <Parameter Name="ProductSubcategory">
+                                      <Value>=Fields!ProductSubcategoryID.Value</Value>
+                                    </Parameter>
+                                    <Parameter Name="StartDate">
+                                      <Value>=CDate(Code.GetStartDateForQuarter(Fields!OrderQtr.Value) &amp; CStr(Fields!OrderYear.Value))</Value>
+                                    </Parameter>
+                                    <Parameter Name="EndDate">
+                                      <Value>=CDate(Code.GetEndDateForQuarter(Fields!OrderQtr.Value) &amp; CStr(Fields!OrderYear.Value))</Value>
+                                    </Parameter>
+                                  </Parameters>
+                                </Drillthrough>
+                              </Action>
+                            </Actions>
+                          </ActionInfo>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>White</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingRight>2pt</PaddingRight>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox401">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!Sales.Value)</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <Format>C0</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingRight>2pt</PaddingRight>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Growth">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Label>Growth</Label>
+                                  <Value>=Code.GetGrowthValue(Previous(Sum(Fields!Sales.Value), "OrderYear"), Sum(Fields!Sales.Value))</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                    <Format>P0</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>=iif(ReportItems!Growth.Value is Nothing, "White", IIF(ReportItems!Growth.Value &gt; 0, "DarkSeaGreen", IIF(ReportItems!Growth.Value = 0, "Cornsilk", "Silver")))</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingRight>6pt</PaddingRight>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Rectangle Name="Rectangle1">
+                          <ReportItems>
+                            <Image Name="Image1">
+                              <Source>Embedded</Source>
+                              <Value>=iif(ReportItems!Growth.Value is Nothing, "EmptyImage", IIF(ReportItems!Growth.Value &gt; 0, "UpArrowGreen", IIF(ReportItems!Growth.Value, "DownArrowRed", "NeutralBarYellow")))</Value>
+                              <Sizing>Fit</Sizing>
+                              <Height>0.23958in</Height>
+                              <Width>0.17708in</Width>
+                              <Style>
+                                <Border>
+                                  <Style>None</Style>
+                                </Border>
+                                <PaddingLeft>2pt</PaddingLeft>
+                                <PaddingTop>2pt</PaddingTop>
+                              </Style>
+                            </Image>
+                          </ReportItems>
+                          <KeepTogether>true</KeepTogether>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                          </Style>
+                        </Rectangle>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox4">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!Sales.Value)</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>C0</Format>
+                                    <TextDecoration>None</TextDecoration>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox4</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>LightSteelBlue</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingRight>2pt</PaddingRight>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox6">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!Sales.Value)</Value>
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <Format>C0</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox6</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>LightSteelBlue</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingRight>2pt</PaddingRight>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox11">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontSize>8pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                    <TextDecoration>None</TextDecoration>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Right</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox11</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>Solid</Style>
+                            </Border>
+                            <BackgroundColor>LightSteelBlue</BackgroundColor>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingRight>2pt</PaddingRight>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox8">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox8</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                            <BackgroundColor>LightSteelBlue</BackgroundColor>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="OrderYear">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!OrderYear.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!OrderYear.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixMembers>
+                    <TablixMember>
+                      <TablixHeader>
+                        <Size>0.25in</Size>
+                        <CellContents>
+                          <Textbox Name="Textbox7">
+                            <CanGrow>true</CanGrow>
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value>=Fields!OrderYear.Value</Value>
+                                    <Style>
+                                      <FontWeight>Bold</FontWeight>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
+                                <Style>
+                                  <TextAlign>Center</TextAlign>
+                                </Style>
+                              </Paragraph>
+                            </Paragraphs>
+                            <rd:DefaultName>Textbox7</rd:DefaultName>
+                            <Style>
+                              <Border>
+                                <Style>Solid</Style>
+                              </Border>
+                              <BackgroundColor>LightSteelBlue</BackgroundColor>
+                              <VerticalAlign>Middle</VerticalAlign>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                            </Style>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
+                      <TablixMembers>
+                        <TablixMember>
+                          <Group Name="OrderQtr">
+                            <GroupExpressions>
+                              <GroupExpression>=Fields!OrderQtr.Value</GroupExpression>
+                            </GroupExpressions>
+                          </Group>
+                          <SortExpressions>
+                            <SortExpression>
+                              <Value>=Fields!OrderQtr.Value</Value>
+                            </SortExpression>
+                          </SortExpressions>
+                          <TablixHeader>
+                            <Size>0.39584in</Size>
+                            <CellContents>
+                              <Textbox Name="OrderQuarter">
+                                <KeepTogether>true</KeepTogether>
+                                <Paragraphs>
+                                  <Paragraph>
+                                    <TextRuns>
+                                      <TextRun>
+                                        <Value>=Fields!OrderQtr.Value</Value>
+                                        <Style>
+                                          <FontWeight>Bold</FontWeight>
+                                        </Style>
+                                      </TextRun>
+                                    </TextRuns>
+                                    <Style>
+                                      <TextAlign>Center</TextAlign>
+                                    </Style>
+                                  </Paragraph>
+                                </Paragraphs>
+                                <Style>
+                                  <Border>
+                                    <Style>Solid</Style>
+                                  </Border>
+                                  <BackgroundColor>LightSteelBlue</BackgroundColor>
+                                  <VerticalAlign>Middle</VerticalAlign>
+                                  <PaddingLeft>2pt</PaddingLeft>
+                                  <PaddingRight>2pt</PaddingRight>
+                                </Style>
+                              </Textbox>
+                            </CellContents>
+                          </TablixHeader>
+                          <TablixMembers>
+                            <TablixMember />
+                          </TablixMembers>
+                          <DataElementOutput>Output</DataElementOutput>
+                          <KeepTogether>true</KeepTogether>
+                        </TablixMember>
+                        <TablixMember>
+                          <TablixHeader>
+                            <Size>0.39584in</Size>
+                            <CellContents>
+                              <Textbox Name="Textbox400">
+                                <CanGrow>true</CanGrow>
+                                <KeepTogether>true</KeepTogether>
+                                <Paragraphs>
+                                  <Paragraph>
+                                    <TextRuns>
+                                      <TextRun>
+                                        <Value>Total</Value>
+                                        <Style>
+                                          <FontWeight>Bold</FontWeight>
+                                          <Color>White</Color>
+                                        </Style>
+                                      </TextRun>
+                                    </TextRuns>
+                                    <Style>
+                                      <TextAlign>Center</TextAlign>
+                                    </Style>
+                                  </Paragraph>
+                                </Paragraphs>
+                                <Style>
+                                  <Border>
+                                    <Style>Solid</Style>
+                                  </Border>
+                                  <BackgroundColor>LightSteelBlue</BackgroundColor>
+                                  <VerticalAlign>Middle</VerticalAlign>
+                                  <PaddingLeft>2pt</PaddingLeft>
+                                  <PaddingRight>2pt</PaddingRight>
+                                  <PaddingTop>2pt</PaddingTop>
+                                  <PaddingBottom>2pt</PaddingBottom>
+                                </Style>
+                              </Textbox>
+                            </CellContents>
+                          </TablixHeader>
+                          <DataElementName>debug</DataElementName>
+                        </TablixMember>
+                        <TablixMember>
+                          <TablixHeader>
+                            <Size>0.39584in</Size>
+                            <CellContents>
+                              <Textbox Name="Textbox357">
+                                <CanGrow>true</CanGrow>
+                                <KeepTogether>true</KeepTogether>
+                                <Paragraphs>
+                                  <Paragraph>
+                                    <TextRuns>
+                                      <TextRun>
+                                        <Value>Y / Y %</Value>
+                                        <Style>
+                                          <FontWeight>Bold</FontWeight>
+                                          <Color>White</Color>
+                                        </Style>
+                                      </TextRun>
+                                    </TextRuns>
+                                    <Style>
+                                      <TextAlign>Center</TextAlign>
+                                    </Style>
+                                  </Paragraph>
+                                </Paragraphs>
+                                <Style>
+                                  <Border>
+                                    <Style>Solid</Style>
+                                  </Border>
+                                  <BackgroundColor>LightSteelBlue</BackgroundColor>
+                                  <VerticalAlign>Middle</VerticalAlign>
+                                  <PaddingLeft>2pt</PaddingLeft>
+                                  <PaddingRight>2pt</PaddingRight>
+                                  <PaddingTop>2pt</PaddingTop>
+                                  <PaddingBottom>2pt</PaddingBottom>
+                                </Style>
+                              </Textbox>
+                            </CellContents>
+                          </TablixHeader>
+                          <Visibility>
+                            <Hidden>=(Previous(Fields!OrderYear.Value) is Nothing)</Hidden>
+                          </Visibility>
+                        </TablixMember>
+                        <TablixMember>
+                          <TablixHeader>
+                            <Size>0.39584in</Size>
+                            <CellContents>
+                              <Textbox Name="Textbox5">
+                                <CanGrow>true</CanGrow>
+                                <KeepTogether>true</KeepTogether>
+                                <Paragraphs>
+                                  <Paragraph>
+                                    <TextRuns>
+                                      <TextRun>
+                                        <Value />
+                                        <Style />
+                                      </TextRun>
+                                    </TextRuns>
+                                    <Style />
+                                  </Paragraph>
+                                </Paragraphs>
+                                <rd:DefaultName>Textbox5</rd:DefaultName>
+                                <Style>
+                                  <Border>
+                                    <Style>Solid</Style>
+                                  </Border>
+                                  <BackgroundColor>LightSteelBlue</BackgroundColor>
+                                  <VerticalAlign>Middle</VerticalAlign>
+                                  <PaddingLeft>2pt</PaddingLeft>
+                                  <PaddingRight>2pt</PaddingRight>
+                                  <PaddingTop>2pt</PaddingTop>
+                                  <PaddingBottom>2pt</PaddingBottom>
+                                </Style>
+                              </Textbox>
+                            </CellContents>
+                          </TablixHeader>
+                          <Visibility>
+                            <Hidden>=(Previous(Fields!OrderYear.Value) is Nothing)</Hidden>
+                          </Visibility>
+                        </TablixMember>
+                      </TablixMembers>
+                      <KeepTogether>true</KeepTogether>
+                    </TablixMember>
+                  </TablixMembers>
+                  <DataElementOutput>Output</DataElementOutput>
+                </TablixMember>
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="ProductCategory">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!Category.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!Category.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixHeader>
+                    <Size>1.02083in</Size>
+                    <CellContents>
+                      <Textbox Name="Category">
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>=Fields!Category.Value</Value>
+                                <Style>
+                                  <FontWeight>Bold</FontWeight>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style />
+                          </Paragraph>
+                        </Paragraphs>
+                        <Style>
+                          <Border>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>LightSteelBlue</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember>
+                      <Group Name="ProductSubcategory">
+                        <GroupExpressions>
+                          <GroupExpression>=Fields!Subcategory.Value</GroupExpression>
+                        </GroupExpressions>
+                      </Group>
+                      <SortExpressions>
+                        <SortExpression>
+                          <Value>=Fields!Subcategory.Value</Value>
+                        </SortExpression>
+                      </SortExpressions>
+                      <TablixHeader>
+                        <Size>1.13542in</Size>
+                        <CellContents>
+                          <Textbox Name="SubCategory">
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value>=Fields!Subcategory.Value</Value>
+                                    <Style>
+                                      <FontWeight>Bold</FontWeight>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
+                                <Style />
+                              </Paragraph>
+                            </Paragraphs>
+                            <Style>
+                              <Border>
+                                <Style>Solid</Style>
+                              </Border>
+                              <BackgroundColor>LightSteelBlue</BackgroundColor>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                            </Style>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
+                      <TablixMembers>
+                        <TablixMember />
+                      </TablixMembers>
+                      <DataElementOutput>Output</DataElementOutput>
+                      <KeepTogether>true</KeepTogether>
+                    </TablixMember>
+                  </TablixMembers>
+                  <DataElementOutput>Output</DataElementOutput>
+                </TablixMember>
+                <TablixMember>
+                  <TablixHeader>
+                    <Size>1.02083in</Size>
+                    <CellContents>
+                      <Textbox Name="Textbox2">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>Total</Value>
+                                <Style>
+                                  <FontWeight>Bold</FontWeight>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style />
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>Textbox2</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>LightSteelBlue</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember>
+                      <TablixHeader>
+                        <Size>1.13542in</Size>
+                        <CellContents>
+                          <Textbox Name="Textbox3">
+                            <CanGrow>true</CanGrow>
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value />
+                                    <Style>
+                                      <FontWeight>Bold</FontWeight>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
+                                <Style />
+                              </Paragraph>
+                            </Paragraphs>
+                            <rd:DefaultName>Textbox3</rd:DefaultName>
+                            <Style>
+                              <Border>
+                                <Style>Solid</Style>
+                              </Border>
+                              <BackgroundColor>LightSteelBlue</BackgroundColor>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                            </Style>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
+                    </TablixMember>
+                  </TablixMembers>
+                  <KeepWithGroup>Before</KeepWithGroup>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <RepeatColumnHeaders>true</RepeatColumnHeaders>
+            <RepeatRowHeaders>true</RepeatRowHeaders>
+            <DataSetName>Sales</DataSetName>
+            <Top>0.97917in</Top>
+            <Left>0.0625in</Left>
+            <Height>1.13542in</Height>
+            <Width>4.5625in</Width>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Textbox Name="Title">
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Adventure Works Sales Analysis</Value>
+                    <Style>
+                      <FontFamily>Tahoma</FontFamily>
+                      <FontSize>18pt</FontSize>
+                      <FontWeight>ExtraBold</FontWeight>
+                      <Color>White</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.0625in</Top>
+            <Left>2.07986in</Left>
+            <Height>0.78125in</Height>
+            <Width>4.48959in</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border />
+              <BackgroundColor>SteelBlue</BackgroundColor>
+              <VerticalAlign>Middle</VerticalAlign>
+            </Style>
+          </Textbox>
+          <Image Name="Image2">
+            <Source>Embedded</Source>
+            <Value>logopart</Value>
+            <Sizing>FitProportional</Sizing>
+            <Top>0.0625in</Top>
+            <Left>0.0625in</Left>
+            <Height>0.78125in</Height>
+            <Width>1.83333in</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Image>
+        </ReportItems>
+        <Height>2.12167in</Height>
+        <Style />
+      </Body>
+      <Width>6.67375in</Width>
+      <Page>
+        <PageHeader>
+          <Height>0.30208in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="ReportName">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Globals!ReportName</Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                        <FontSize>9pt</FontSize>
+                        <Color>SteelBlue</Color>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>ReportName</rd:DefaultName>
+              <Top>0.01042in</Top>
+              <Left>4.29862in</Left>
+              <Height>0.25in</Height>
+              <Width>2.27083in</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageHeader>
+        <PageFooter>
+          <Height>1.04166in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="Textbox1">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>AdventureWorks sales trend analysis that compares year over year growth for products by category and subcategory. This report illustrates the following features: a Tablix with conditionally hidden static column; the aggregate function Previous that calculates year over year trends; custom code; conditional font, background cell color, and KPI images; and conditional drillthrough parameters.</Value>
+                      <Style>
+                        <FontStyle>Normal</FontStyle>
+                        <FontWeight>Normal</FontWeight>
+                        <TextDecoration>None</TextDecoration>
+                        <Color>#000000</Color>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox1</rd:DefaultName>
+              <Top>0.06944in</Top>
+              <Left>0.0625in</Left>
+              <Height>0.92014in</Height>
+              <Width>6.38542in</Width>
+              <Visibility>
+                <Hidden>=NOT Parameters!ShowDescription.Value</Hidden>
+              </Visibility>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageFooter>
+        <LeftMargin>0.5in</LeftMargin>
+        <RightMargin>0.5in</RightMargin>
+        <TopMargin>0.5in</TopMargin>
+        <BottomMargin>0.5in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="ShowDescription">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>False</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Show Description?</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+  </ReportParameters>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>1</NumberOfColumns>
+      <NumberOfRows>1</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>ShowDescription</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
+  <Code>Public Function GetStartDateForQuarter(ByVal quarter As String) As String
+    If quarter = "Q1" Then
+        Return "01/01/"
+    Else if quarter = "Q2" Then
+        Return "04/01/"
+    Else if quarter = "Q3" Then
+        Return "07/01/"
+    Else 
+        Return "10/01/"
+    End If
+End Function
+
+Public Function GetEndDateForQuarter(ByVal quarter As String) As String
+    If quarter = "Q1" Then
+        Return "03/31/"
+    Else if quarter = "Q2" Then
+        Return "06/30/"
+    Else if quarter = "Q3" Then
+        Return "09/30/"
+    Else 
+        Return "12/31/"
+    End If
+End Function
+
+Public Function GetGrowthValue(ByVal PreviousValue, ByVal CurrentValue) As Object
+    If IsNothing(PreviousValue) OR IsNothing(CurrentValue) Then
+        Return Nothing
+    Else if PreviousValue = 0 OR CurrentValue = 0 Then
+        Return Nothing
+    Else 
+        Return (CurrentValue - PreviousValue) / CurrentValue
+    End If
+End Function
+</Code>
+  <EmbeddedImages>
+    <EmbeddedImage Name="logopart">
+      <MIMEType>image/jpeg</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+    <EmbeddedImage Name="NeutralBarYellow">
+      <MIMEType>image/gif</MIMEType>
+      <ImageData>R0lGODlhEAAQANUuAP/nb//nc//xofvZVfnWUfrgYPjcXv/woP/rd/zcVv/vnv/ocv/ref/yo//pePvYU//qdPjVUPneYP/ncfrXUv/xpP/pc//yovzoiPrXVPrYVPvnh/rgYvzgZPzeV/rVUvnVUOvJS/zhZP/rePzbV/vbVvvbVfvhY/nfX//wn/ndX+zLTaJ8KsanVf///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAC4ALAAAAAAQABAAAAZkQJdwSCwaj8ikMtlqOp9QV6tSaTQugoM2pVAEWFIBY4RwQCyBxQQAKIBbYkT5nF6335uSaTDQUCgEIBERIW8YHgkJJAMPDxkfBAQrbwEdIiccBRISKCoGn28soqOkpEunqKmqQQA7</ImageData>
+    </EmbeddedImage>
+    <EmbeddedImage Name="EmptyImage">
+      <MIMEType>image/gif</MIMEType>
+      <ImageData>R0lGODlhAQABAPcAAP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///yH5BAEAAP8ALAAAAAABAAEAQAgEAP8FBAA7</ImageData>
+    </EmbeddedImage>
+    <EmbeddedImage Name="DownArrowRed">
+      <MIMEType>image/gif</MIMEType>
+      <ImageData>R0lGODlhEAAQAMQQAP+enuEUFP+YmP+8vP+urv+0tP+3t/+jo//AwLMQEP+rq/+Wlv+pqfN3d+0sLP///////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAABAALAAAAAAQABAAAAVRICRCgWOawaiKzuO6zqq2SP3EMvsM/J3rhqDv1yoYh7kWYYkUJUqmh4KhuKESutdh+0I2Wg+AWAxrqL4ugbosQz8W7Jz7Zv5B0I66/Z7f+0UhADs=</ImageData>
+    </EmbeddedImage>
+    <EmbeddedImage Name="UpArrowGreen">
+      <MIMEType>image/gif</MIMEType>
+      <ImageData>R0lGODlhEAAQAMQSAIfVZDdoOo/VaYTYXXnZQX3bSIHYTyVFJ37aUYjXXHzcRJfScHvbQ4HXWH3ZUGeva0N/Rv///////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAABIALAAAAAAQABAAAAVToCSOD/SMaFpGZqpCUdy60hot8vnGQp+jNoBQ+BPBYpGBEskSHQKQaCTRSLCigUMKhnAgmjQJzEAG02CFtNkFUzAU622EQI+jjkhIWAKNYveAIiEAOw==</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>a2c1f5fa-0d58-40db-a075-a89717b6ef57</rd:ReportID>
+</Report>

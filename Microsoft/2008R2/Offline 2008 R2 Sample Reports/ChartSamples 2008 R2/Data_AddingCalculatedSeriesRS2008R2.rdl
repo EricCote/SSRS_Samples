@@ -1,0 +1,834 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Description>This sample demonstrates how to add a calculated series to an existing series.  This is especially useful for stock data.</Description>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource1">
+      <ConnectionProperties>
+        <DataProvider>XML</DataProvider>
+        <ConnectString />
+        <IntegratedSecurity>true</IntegratedSecurity>
+      </ConnectionProperties>
+      <rd:SecurityType>Integrated</rd:SecurityType>
+      <rd:DataSourceID>337cb904-31eb-43da-adb2-e8396f817dd4</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>DataSource1</DataSourceName>
+        <CommandText>&lt;Query&gt;
+&lt;ElementPath&gt;Root /Stock {@High (Float), @Low (Float), @Close (Float), @Open(Float), @StockPriceDate(Date)}
+&lt;/ElementPath&gt;
+&lt;XmlData&gt;
+&lt;Root&gt;
+&lt;Stock High="30.4113833868661" Low="29.9705661418443" Close="30.2016959908158" Open="30.2323120165209" StockPriceDate="2008-01-13T00:00:00"/&gt;
+&lt;Stock High="30.344364806928" Low="29.285407761934" Close="29.883061561437" Open="30.0601563731593" StockPriceDate="2008-01-14T00:00:00"/&gt;
+&lt;Stock High="30.5634107427606" Low="29.2913054627896" Close="30.2709246309909" Open="29.5931094600998" StockPriceDate="2008-01-15T00:00:00"/&gt;
+&lt;Stock High="30.2877959267856" Low="29.3789934901634" Close="29.4925094106877" Open="29.5271566504536" StockPriceDate="2008-01-16T00:00:00"/&gt;
+&lt;Stock High="30.3024129991227" Low="29.1717053290587" Close="29.3740584364302" Open="29.7073829924717" StockPriceDate="2008-01-17T00:00:00"/&gt;
+&lt;Stock High="30.2278391889886" Low="29.5022187046711" Close="29.8150841045724" Open="29.8304434474984" StockPriceDate="2008-01-18T00:00:00"/&gt;
+&lt;Stock High="30.2364285218053" Low="29.2598340867651" Close="29.672955408196" Open="29.4160317487521" StockPriceDate="2008-01-19T00:00:00"/&gt;
+&lt;Stock High="29.9043605942197" Low="29.5906871052779" Close="29.6594606995291" Open="29.7987734192994" StockPriceDate="2008-01-20T00:00:00"/&gt;
+&lt;Stock High="30.3806052673535" Low="28.9088934941741" Close="29.6647071448473" Open="28.9968021339249" StockPriceDate="2008-01-21T00:00:00"/&gt;
+&lt;Stock High="29.5945664488212" Low="28.2622879460271" Close="28.8744485521563" Open="28.8727533428987" StockPriceDate="2008-01-22T00:00:00"/&gt;
+&lt;Stock High="29.2310892767137" Low="28.221648984105" Close="29.1787294200241" Open="29.0969743570745" StockPriceDate="2008-01-23T00:00:00"/&gt;
+&lt;Stock High="30.0362332286463" Low="29.0534588149979" Close="29.9196750931049" Open="29.3303729080137" StockPriceDate="2008-01-24T00:00:00"/&gt;
+&lt;Stock High="29.3583807655283" Low="28.3194075225344" Close="28.5349906319316" Open="29.1673831810344" StockPriceDate="2008-01-25T00:00:00" /&gt;
+&lt;Stock High="29.1900310163592" Low="28.7392747741163" Close="28.9868435217259" Open="28.9317452773298" StockPriceDate="2008-01-26T00:00:00"/&gt;
+&lt;Stock High="29.8285672734789" Low="28.8619850273697" Close="29.0497740797163" Open="29.3922324035388" StockPriceDate="2008-01-27T00:00:00"/&gt;
+&lt;Stock High="29.4404143275989" Low="28.7594157826074" Close="29.0027017036573" Open="28.9353548041137" StockPriceDate="2008-01-28T00:00:00"/&gt;
+&lt;Stock High="29.1590673216321" Low="28.1874174290171" Close="28.8428332381043" Open="29.138457018532" StockPriceDate="2008-01-29T00:00:00"/&gt;
+&lt;Stock High="29.1779298839569" Low="28.5588793082483" Close="29.1241462026881" Open="28.5930127987052" StockPriceDate="2008-01-30T00:00:00"/&gt;
+&lt;Stock High="28.9092067552686" Low="28.0496467932737" Close="28.1650651972025" Open="28.4520036653457" StockPriceDate="2008-01-31T00:00:00"/&gt;
+&lt;Stock High="28.9076783138428" Low="27.9488744543226" Close="28.4619522379599" Open="28.22637812026" StockPriceDate="2008-02-01T00:00:00"/&gt;
+&lt;Stock High="28.9236349557623" Low="28.6603480232681" Close="28.7922813413149" Open="28.8354176970132" StockPriceDate="2008-02-02T00:00:00"/&gt;
+&lt;Stock High="28.8647344823065" Low="27.971390623004" Close="28.6121278723527" Open="28.309650230992" StockPriceDate="2008-02-03T00:00:00"/&gt;
+&lt;Stock High="28.7779796058885" Low="28.2862503606041" Close="28.4491606037106" Open="28.688962411909" StockPriceDate="2008-02-04T00:00:00"/&gt;
+&lt;Stock High="29.2212912562273" Low="28.7476807016506" Close="29.157710326896" Open="29.1836976179959" StockPriceDate="2008-02-05T00:00:00"/&gt;
+&lt;Stock High="29.9927715536355" Low="28.6506187861272" Close="29.2940455926271" Open="29.4868132296267" StockPriceDate="2008-02-06T00:00:00"/&gt;
+&lt;Stock High="29.9479555560809" Low="28.8182327805947" Close="29.0605276221535" Open="29.9188360209289" StockPriceDate="2008-02-07T00:00:00"/&gt;
+&lt;Stock High="30.1769592600858" Low="29.5165415749587" Close="30.0165146026928" Open="29.7004720458793" StockPriceDate="2008-02-08T00:00:00"/&gt;
+&lt;Stock High="29.7882411365838" Low="28.0374487288034" Close="29.0087687288016" Open="28.8272240411861" StockPriceDate="2008-02-09T00:00:00"/&gt;
+&lt;Stock High="29.0929394513114" Low="27.3432544964346" Close="28.1945773377302" Open="28.9474151959692" StockPriceDate="2008-02-10T00:00:00"/&gt;
+&lt;Stock High="29.2531945018639" Low="28.4458096030675" Close="28.6748472926849" Open="29.2298658479671" StockPriceDate="2008-02-11T00:00:00"/&gt;
+&lt;Stock High="29.9053626821463" Low="29.1181322571967" Close="29.6285912264799" Open="29.6775805999526" StockPriceDate="2008-02-12T00:00:00"/&gt;
+&lt;Stock High="30.5684540381148" Low="29.2993486571228" Close="29.8221582648087" Open="29.6199412092917" StockPriceDate="2008-02-13T00:00:00"/&gt;
+&lt;Stock High="29.9540531421124" Low="29.100235643869" Close="29.7592580480569" Open="29.7465316785192" StockPriceDate="2008-02-14T00:00:00"/&gt;
+&lt;Stock High="30.5488309479022" Low="28.8304933399977" Close="29.6587779523088" Open="30.2220527975418" StockPriceDate="2008-02-15T00:00:00"/&gt;
+&lt;Stock High="31.1111115704303" Low="30.5465869559153" Close="30.9534024286293" Open="31.037086658981" StockPriceDate="2008-02-16T00:00:00"/&gt;
+&lt;Stock High="31.7897202412008" Low="31.1366140063946" Close="31.4274892691109" Open="31.5865107865067" StockPriceDate="2008-02-17T00:00:00"/&gt;
+&lt;Stock High="31.9440097886865" Low="30.6789397548377" Close="31.2321954658461" Open="31.4809520683503" StockPriceDate="2008-02-18T00:00:00"/&gt;
+&lt;Stock High="31.6932101563859" Low="30.5851648367747" Close="31.2000088407533" Open="30.8408205061386" StockPriceDate="2008-02-19T00:00:00"/&gt;
+&lt;Stock High="31.3105087775297" Low="29.6906599247295" Close="30.6381878785943" Open="29.9893128682649" StockPriceDate="2008-02-20T00:00:00"/&gt;
+&lt;Stock High="30.3662818329092" Low="29.7512901165136" Close="29.8346408545972" Open="30.0660597682356" StockPriceDate="2008-02-21T00:00:00"/&gt;
+&lt;Stock High="30.6965961170219" Low="29.8334281536293" Close="30.4822248045124" Open="30.157687914904" StockPriceDate="2008-02-22T00:00:00"/&gt;
+&lt;Stock High="30.227765416174" Low="30.158501939729" Close="30.1862714764532" Open="30.168757794052" StockPriceDate="2008-02-23T00:00:00"/&gt;
+&lt;Stock High="30.3402895305169" Low="29.761651643455" Close="29.9801239687998" Open="29.942919139983" StockPriceDate="2008-02-24T00:00:00"/&gt;
+&lt;Stock High="30.9288153329331" Low="29.7540584696973" Close="30.1072133307643" Open="29.9644093943466" StockPriceDate="2008-02-25T00:00:00"/&gt;
+&lt;Stock High="30.1574494566442" Low="29.228251640499" Close="29.2686065796954" Open="30.0096239495634" StockPriceDate="2008-02-26T00:00:00"/&gt;
+&lt;Stock High="30.5895750396403" Low="29.8740189458155" Close="30.1612793619131" Open="29.9670257608547" StockPriceDate="2008-02-27T00:00:00"/&gt;
+&lt;Stock High="30.9095508025833" Low="29.8327771241293" Close="30.2656370610599" Open="30.2176351975404" StockPriceDate="2008-02-28T00:00:00"/&gt;
+&lt;Stock High="30.2919936012577" Low="29.1657685162012" Close="29.3970055943945" Open="29.7348202987481" StockPriceDate="2008-03-01T00:00:00"/&gt;
+&lt;Stock High="30.1526569264" Low="29.1863486968128" Close="29.7547556603327" Open="29.3246541612231" StockPriceDate="2008-03-02T00:00:00"/&gt;
+&lt;Stock High="29.3876718331802" Low="28.6461893072367" Close="29.2100785367038" Open="28.7728079392698" StockPriceDate="2008-03-03T00:00:00"/&gt;
+&lt;Stock High="29.2382397181782" Low="28.7122708882978" Close="28.7714658782934" Open="28.7698764197503" StockPriceDate="2008-03-04T00:00:00"/&gt;
+&lt;Stock High="29.2237249933409" Low="28.3909882237277" Close="28.5894629015653" Open="28.8534627140093" StockPriceDate="2008-03-05T00:00:00"/&gt;
+&lt;Stock High="29.0319488312543" Low="27.8088698049393" Close="28.1276572084925" Open="28.7247018065088" StockPriceDate="2008-03-06T00:00:00"/&gt;
+&lt;Stock High="28.9317068678144" Low="28.5152002339922" Close="28.8282231405644" Open="28.8034871023446" StockPriceDate="2008-03-07T00:00:00"/&gt;
+&lt;Stock High="29.7305979987565" Low="28.7786423455174" Close="29.2117797183209" Open="29.1843313458139" StockPriceDate="2008-03-08T00:00:00"/&gt;
+&lt;Stock High="29.3835964256523" Low="27.7749684475879" Close="28.6703976820253" Open="28.7208335379317" StockPriceDate="2008-03-09T00:00:00"/&gt;
+&lt;Stock High="28.9740285765805" Low="28.6479599618192" Close="28.7640014051839" Open="28.652996667353" StockPriceDate="2008-03-10T00:00:00"/&gt;
+&lt;Stock High="28.9779503148347" Low="27.7328806856736" Close="28.1083595239532" Open="27.8737942425997" StockPriceDate="2008-03-11T00:00:00"/&gt;
+&lt;Stock High="28.2428949303313" Low="27.3890274270506" Close="28.0651572239077" Open="27.6522431424809" StockPriceDate="2008-03-12T00:00:00"/&gt;
+&lt;Stock High="28.0976822061666" Low="27.0412575543797" Close="27.2201892317114" Open="27.2209202942312" StockPriceDate="2008-03-13T00:00:00"/&gt;
+&lt;Stock High="27.7971208975413" Low="27.0164074716942" Close="27.3146759921064" Open="27.2618270014919" StockPriceDate="2008-03-14T00:00:00"/&gt;
+&lt;Stock High="27.3467053609871" Low="26.2544359300758" Close="26.4704527233343" Open="26.8488482897553" StockPriceDate="2008-03-15T00:00:00"/&gt;
+&lt;Stock High="27.5933042134283" Low="26.8934485981832" Close="27.4555787437079" Open="27.4498898264795" StockPriceDate="2008-03-16T00:00:00"/&gt;
+&lt;Stock High="27.8429519059879" Low="26.0797064194438" Close="27.0603006455939" Open="27.3856538892366" StockPriceDate="2008-03-17T00:00:00"/&gt;
+&lt;Stock High="28.1244867465748" Low="27.2118350717935" Close="27.51400699562" Open="28.0957007506788" StockPriceDate="2008-03-18T00:00:00"/&gt;
+&lt;Stock High="28.8839509300759" Low="28.1567717670674" Close="28.5806102923439" Open="28.4021323938214" StockPriceDate="2008-03-19T00:00:00"/&gt;
+&lt;Stock High="29.1301372827918" Low="28.6072379882763" Close="28.9302916264119" Open="28.99908470065" StockPriceDate="2008-03-20T00:00:00"/&gt;
+&lt;Stock High="29.8417731842285" Low="28.736174065317" Close="29.716898761378" Open="29.5445229420441" StockPriceDate="2008-03-21T00:00:00"/&gt;
+&lt;Stock High="30.0359430068601" Low="28.4319549011477" Close="29.1322980274392" Open="29.4689068709407" StockPriceDate="2008-03-22T00:00:00"/&gt;
+&lt;Stock High="30.2023328462759" Low="29.3594999522846" Close="29.6304907944328" Open="29.5173020191838" StockPriceDate="2008-03-23T00:00:00"/&gt;
+&lt;Stock High="29.8247626645407" Low="28.5242486923382" Close="29.2443638630219" Open="29.2869343665809" StockPriceDate="2008-03-24T00:00:00"/&gt;
+&lt;Stock High="29.4840778468544" Low="27.979167787346" Close="28.5485978799609" Open="29.235706456355" StockPriceDate="2008-03-25T00:00:00"/&gt;
+&lt;Stock High="29.8110275069837" Low="29.2187381739418" Close="29.6005547755003" Open="29.3803502209679" StockPriceDate="2008-03-26T00:00:00"/&gt;
+&lt;Stock High="29.4389566011263" Low="27.8917543397067" Close="28.4781023511381" Open="29.2610789393968" StockPriceDate="2008-03-27T00:00:00"/&gt;
+&lt;Stock High="29.814277938914" Low="28.6461234277006" Close="29.3476343356437" Open="29.3698903529507" StockPriceDate="2008-03-28T00:00:00"/&gt;
+&lt;Stock High="29.5268911266102" Low="28.3922420374756" Close="28.6959020094204" Open="28.9475587042967" StockPriceDate="2008-03-29T00:00:00"/&gt;
+&lt;Stock High="29.0298668383991" Low="28.3700365835893" Close="28.6957561903379" Open="28.474129110558" StockPriceDate="2008-03-30T00:00:00"/&gt;
+&lt;Stock High="28.581492294125" Low="26.6818142035844" Close="27.6562627712945" Open="27.0929199821136" StockPriceDate="2008-03-31T00:00:00"/&gt;
+&lt;Stock High="27.1252697776974" Low="26.858705805115" Close="26.8886594301821" Open="26.8980522701634" StockPriceDate="2008-04-01T00:00:00"/&gt;
+&lt;Stock High="27.3777827558597" Low="26.0889488353469" Close="26.6411785450617" Open="27.2581899446285" StockPriceDate="2008-04-02T00:00:00"/&gt;
+&lt;Stock High="27.8136342748642" Low="27.5120489138279" Close="27.6678688915341" Open="27.5967785167832" StockPriceDate="2008-04-03T00:00:00"/&gt;
+&lt;Stock High="28.1186068946456" Low="27.1032465360016" Close="27.6911237339321" Open="27.5642972790287" StockPriceDate="2008-04-04T00:00:00"/&gt;
+&lt;Stock High="28.5590256016328" Low="27.1171983358813" Close="27.9409417373602" Open="27.8775701309373" StockPriceDate="2008-04-05T00:00:00"/&gt;
+&lt;Stock High="28.7479012748373" Low="28.0662645294097" Close="28.0964919335116" Open="28.3910450311584" StockPriceDate="2008-04-06T00:00:00"/&gt;
+&lt;Stock High="28.6677838607324" Low="27.9329444969009" Close="28.4370857901361" Open="28.5671349942895" StockPriceDate="2008-04-07T00:00:00"/&gt;
+&lt;Stock High="29.1768953544344" Low="28.0376256559583" Close="28.7652217851222" Open="28.7782552348149" StockPriceDate="2008-04-08T00:00:00"/&gt;
+&lt;Stock High="29.0142793985882" Low="28.6083607545893" Close="28.8488709245836" Open="28.9420242695323" StockPriceDate="2008-04-09T00:00:00"/&gt;
+&lt;Stock High="29.8729248944533" Low="29.0288807530545" Close="29.4341829704735" Open="29.7181228003698" StockPriceDate="2008-04-10T00:00:00"/&gt; 
+&lt;Stock High="30.6325366939253" Low="29.7740971320802" Close="29.838234302667" Open="29.7837420356317" StockPriceDate="2008-04-11T00:00:00"/&gt;
+&lt;Stock High="30.4589111751153" Low="29.468609814278" Close="30.4361985365031" Open="30.1170838765353" StockPriceDate="2008-04-12T00:00:00"/&gt;
+&lt;Stock High="30.863317326666" Low="29.8286454924455" Close="29.9916736931441" Open="30.334889023186" StockPriceDate="2008-04-13T00:00:00"/&gt;
+&lt;Stock High="30.4363751445376" Low="29.6432163680414" Close="29.9892933516954" Open="29.9453626326587" StockPriceDate="2008-04-14T00:00:00"/&gt;
+&lt;Stock High="30.1517455760721" Low="28.7273962212944" Close="29.5982634791721" Open="29.0821053810607" StockPriceDate="2008-04-15T00:00:00"/&gt;
+&lt;Stock High="29.3145682986235" Low="28.327923264581" Close="28.625371421121" Open="28.4697739718867" StockPriceDate="2008-04-16T00:00:00"/&gt;
+&lt;Stock High="28.8879432260529" Low="28.3372916065856" Close="28.3822147761449" Open="28.5335548038553" StockPriceDate="2008-04-17T00:00:00"/&gt;
+&lt;Stock High="28.7205277945744" Low="27.4314712809813" Close="27.954646629287" Open="28.1481691695971" StockPriceDate="2008-04-18T00:00:00"/&gt;
+&lt;Stock High="28.3609508164507" Low="27.7408493223787" Close="28.3538022036911" Open="27.7879948654843" StockPriceDate="2008-04-19T00:00:00"/&gt;
+&lt;Stock High="28.3752670362232" Low="27.5549726337671" Close="28.3562750224507" Open="27.7633488962903" StockPriceDate="2008-04-20T00:00:00"/&gt;
+&lt;Stock High="28.0264582446615" Low="27.0603425427336" Close="27.1771419248153" Open="27.7734487021797" StockPriceDate="2008-04-21T00:00:00"/&gt;
+&lt;Stock High="28.0220940707933" Low="27.2351718544771" Close="27.7837772609238" Open="27.856008133556" StockPriceDate="2008-04-22T00:00:00"/&gt;
+&lt;Stock High="28.6753396239065" Low="27.2001568189406" Close="27.8157699081703" Open="27.7569181417528" StockPriceDate="2008-04-23T00:00:00"/&gt;
+&lt;Stock High="28.3247928078549" Low="27.5843911343795" Close="28.1685230055359" Open="27.7511421899603" StockPriceDate="2008-04-24T00:00:00"/&gt;
+&lt;/Root&gt;
+&lt;/XmlData&gt;
+&lt;/Query&gt;</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="High">
+          <DataField>High</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="Low">
+          <DataField>Low</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="Close">
+          <DataField>Close</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="Open">
+          <DataField>Open</DataField>
+          <rd:TypeName>System.Double</rd:TypeName>
+        </Field>
+        <Field Name="StockPriceDate">
+          <DataField>StockPriceDate</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Chart Name="Chart1">
+            <ChartCategoryHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Group Name="Chart1_CategoryGroup1">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!StockPriceDate.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <Label>=Fields!StockPriceDate.Value</Label>
+                </ChartMember>
+              </ChartMembers>
+            </ChartCategoryHierarchy>
+            <ChartSeriesHierarchy>
+              <ChartMembers>
+                <ChartMember>
+                  <Label>High</Label>
+                </ChartMember>
+              </ChartMembers>
+            </ChartSeriesHierarchy>
+            <ChartData>
+              <ChartSeriesCollection>
+                <ChartSeries Name="High">
+                  <ChartDataPoints>
+                    <ChartDataPoint>
+                      <ChartDataPointValues>
+                        <High>=Sum(Fields!High.Value)</High>
+                        <Low>=Sum(Fields!Low.Value)</Low>
+                        <Start>=Sum(Fields!Open.Value)</Start>
+                        <End>=Sum(Fields!Close.Value)</End>
+                      </ChartDataPointValues>
+                      <ChartDataLabel>
+                        <Style />
+                      </ChartDataLabel>
+                      <Style />
+                      <ChartMarker>
+                        <Style />
+                      </ChartMarker>
+                      <DataElementOutput>Output</DataElementOutput>
+                    </ChartDataPoint>
+                  </ChartDataPoints>
+                  <Type>Range</Type>
+                  <Subtype>Candlestick</Subtype>
+                  <Style>
+                    <ShadowOffset>0pt</ShadowOffset>
+                  </Style>
+                  <ChartEmptyPoints>
+                    <Style />
+                    <ChartMarker>
+                      <Style />
+                    </ChartMarker>
+                    <ChartDataLabel>
+                      <Style />
+                    </ChartDataLabel>
+                  </ChartEmptyPoints>
+                  <ValueAxisName>Primary</ValueAxisName>
+                  <CategoryAxisName>Primary</CategoryAxisName>
+                  <ChartSmartLabel>
+                    <CalloutLineColor>Black</CalloutLineColor>
+                    <MinMovingDistance>0pt</MinMovingDistance>
+                  </ChartSmartLabel>
+                </ChartSeries>
+              </ChartSeriesCollection>
+              <ChartDerivedSeriesCollection>
+                <ChartDerivedSeries>
+                  <ChartSeries Name="Series1">
+                    <Type>Line</Type>
+                    <Subtype>Smooth</Subtype>
+                    <Style>
+                      <Border>
+                        <Width>2pt</Width>
+                      </Border>
+                      <ShadowColor>Gray</ShadowColor>
+                      <ShadowOffset>1pt</ShadowOffset>
+                    </Style>
+                    <ChartMarker>
+                      <Style />
+                    </ChartMarker>
+                    <ChartDataLabel>
+                      <Style />
+                    </ChartDataLabel>
+                    <ChartEmptyPoints>
+                      <Style />
+                      <ChartMarker>
+                        <Style />
+                      </ChartMarker>
+                      <ChartDataLabel>
+                        <Style />
+                      </ChartDataLabel>
+                    </ChartEmptyPoints>
+                    <ChartItemInLegend>
+                      <LegendText>Det.Price.Osc (High)</LegendText>
+                    </ChartItemInLegend>
+                    <ChartAreaName>ChartArea1</ChartAreaName>
+                    <ValueAxisName>Primary</ValueAxisName>
+                    <CategoryAxisName>Primary</CategoryAxisName>
+                    <ChartSmartLabel>
+                      <CalloutLineColor>Black</CalloutLineColor>
+                      <MinMovingDistance>0pt</MinMovingDistance>
+                    </ChartSmartLabel>
+                  </ChartSeries>
+                  <SourceChartSeriesName>High</SourceChartSeriesName>
+                  <DerivedSeriesFormula>DetrendedPriceOscillator</DerivedSeriesFormula>
+                  <ChartFormulaParameters>
+                    <ChartFormulaParameter Name="Period">
+                      <Value>2</Value>
+                    </ChartFormulaParameter>
+                  </ChartFormulaParameters>
+                </ChartDerivedSeries>
+              </ChartDerivedSeriesCollection>
+            </ChartData>
+            <ChartAreas>
+              <ChartArea Name="Default">
+                <ChartCategoryAxes>
+                  <ChartAxis Name="Primary">
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                      <Format>MMM dd</Format>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <Interval>2</Interval>
+                    <IntervalType>Weeks</IntervalType>
+                    <ChartMajorGridLines>
+                      <Enabled>True</Enabled>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMinorTickMarks>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <PreventLabelOffset>true</PreventLabelOffset>
+                    <IncludeZero>false</IncludeZero>
+                    <MaxFontSize>8pt</MaxFontSize>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                  <ChartAxis Name="Secondary">
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption>Axis Title</Caption>
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <ChartMajorGridLines>
+                      <Enabled>False</Enabled>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMinorTickMarks>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Location>Opposite</Location>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                </ChartCategoryAxes>
+                <ChartValueAxes>
+                  <ChartAxis Name="Primary">
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                      <Format>'$'0.00;('$'0.00)</Format>
+                      <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <VariableAutoInterval>true</VariableAutoInterval>
+                    <ChartMajorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Solid</Style>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Enabled>False</Enabled>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMinorTickMarks>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <IncludeZero>false</IncludeZero>
+                    <MaxFontSize>8pt</MaxFontSize>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                  <ChartAxis Name="Secondary">
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption>Axis Title</Caption>
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <ChartMajorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMinorTickMarks>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Location>Opposite</Location>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                </ChartValueAxes>
+                <Style>
+                  <BackgroundGradientType>None</BackgroundGradientType>
+                </Style>
+                <AlignOrientation>Vertical</AlignOrientation>
+                <ChartAlignType>
+                  <Position>true</Position>
+                  <InnerPlotPosition>true</InnerPlotPosition>
+                </ChartAlignType>
+                <AlignWithChartArea>ChartArea1</AlignWithChartArea>
+                <ChartElementPosition>
+                  <Top>6</Top>
+                  <Left>4.384</Left>
+                  <Height>62</Height>
+                  <Width>90.541</Width>
+                </ChartElementPosition>
+              </ChartArea>
+              <ChartArea Name="ChartArea1">
+                <ChartCategoryAxes>
+                  <ChartAxis Name="Primary">
+                    <Style>
+                      <Border>
+                        <Color>White</Color>
+                      </Border>
+                      <FontSize>8pt</FontSize>
+                      <Format>MMM dd</Format>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <Interval>2</Interval>
+                    <IntervalType>Weeks</IntervalType>
+                    <ChartMajorGridLines>
+                      <Enabled>True</Enabled>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMajorTickMarks>
+                      <Enabled>False</Enabled>
+                    </ChartMajorTickMarks>
+                    <ChartMinorTickMarks>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <HideLabels>true</HideLabels>
+                    <IncludeZero>false</IncludeZero>
+                    <MaxFontSize>8pt</MaxFontSize>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                  <ChartAxis Name="Secondary">
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption>Axis Title</Caption>
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <ChartMajorGridLines>
+                      <Enabled>False</Enabled>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMinorTickMarks>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Location>Opposite</Location>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                </ChartCategoryAxes>
+                <ChartValueAxes>
+                  <ChartAxis Name="Primary">
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                      <Format>'$'0.00;('$'0.00)</Format>
+                      <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption />
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <VariableAutoInterval>true</VariableAutoInterval>
+                    <ChartMajorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMinorTickMarks>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <IncludeZero>false</IncludeZero>
+                    <MinFontSize>8pt</MinFontSize>
+                    <MaxFontSize>8pt</MaxFontSize>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                  <ChartAxis Name="Secondary">
+                    <Style>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                    <ChartAxisTitle>
+                      <Caption>Axis Title</Caption>
+                      <Style>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </ChartAxisTitle>
+                    <ChartMajorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                        </Border>
+                      </Style>
+                    </ChartMajorGridLines>
+                    <ChartMinorGridLines>
+                      <Style>
+                        <Border>
+                          <Color>Gainsboro</Color>
+                          <Style>Dotted</Style>
+                        </Border>
+                      </Style>
+                    </ChartMinorGridLines>
+                    <ChartMinorTickMarks>
+                      <Length>0.5</Length>
+                    </ChartMinorTickMarks>
+                    <CrossAt>NaN</CrossAt>
+                    <Location>Opposite</Location>
+                    <Minimum>NaN</Minimum>
+                    <Maximum>NaN</Maximum>
+                    <ChartAxisScaleBreak>
+                      <Style />
+                    </ChartAxisScaleBreak>
+                  </ChartAxis>
+                </ChartValueAxes>
+                <Style>
+                  <BackgroundGradientType>None</BackgroundGradientType>
+                </Style>
+                <AlignOrientation>Vertical</AlignOrientation>
+                <ChartAlignType>
+                  <Position>true</Position>
+                  <InnerPlotPosition>true</InnerPlotPosition>
+                </ChartAlignType>
+                <AlignWithChartArea>Default</AlignWithChartArea>
+                <ChartElementPosition>
+                  <Top>69</Top>
+                  <Left>4.384</Left>
+                  <Height>23</Height>
+                  <Width>90.541</Width>
+                </ChartElementPosition>
+              </ChartArea>
+            </ChartAreas>
+            <Palette>Custom</Palette>
+            <ChartCustomPaletteColors>
+              <ChartCustomPaletteColor>#a5bfd6</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#fed15d</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#cccccc</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#e1eaf5</ChartCustomPaletteColor>
+              <ChartCustomPaletteColor>#999999</ChartCustomPaletteColor>
+            </ChartCustomPaletteColors>
+            <ChartBorderSkin>
+              <ChartBorderSkinType>Emboss</ChartBorderSkinType>
+              <Style>
+                <BackgroundColor>Gray</BackgroundColor>
+                <BackgroundGradientType>None</BackgroundGradientType>
+                <Color>White</Color>
+              </Style>
+            </ChartBorderSkin>
+            <ChartNoDataMessage Name="NoDataMessage">
+              <Caption>No Data Available</Caption>
+              <Style>
+                <BackgroundGradientType>None</BackgroundGradientType>
+                <TextAlign>General</TextAlign>
+                <VerticalAlign>Top</VerticalAlign>
+              </Style>
+            </ChartNoDataMessage>
+            <DataSetName>DataSet1</DataSetName>
+            <Top>1.57986in</Top>
+            <Left>0.40625in</Left>
+            <Height>3.63542in</Height>
+            <Width>5.91667in</Width>
+            <Style>
+              <Border>
+                <Style>Solid</Style>
+              </Border>
+              <BackgroundColor>White</BackgroundColor>
+              <BackgroundGradientType>None</BackgroundGradientType>
+            </Style>
+          </Chart>
+          <Textbox Name="textbox1">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Adding a Calculated Series to the Chart</Value>
+                    <Style>
+                      <FontSize>16pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.22917in</Top>
+            <Left>0.40625in</Left>
+            <Height>0.375in</Height>
+            <Width>5.91667in</Width>
+            <ZIndex>1</ZIndex>
+            <DataElementOutput>NoOutput</DataElementOutput>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="textbox2">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>You can add a calculated series by right-clicking a field in the Values area and clicking </Value>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>Add Calculated Series</Value>
+                    <Style>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>.  This is particularly useful when you are graphing stock data.</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>In this example, the chart contains two chart areas. The calculated field is displayed in the second chart area. 
+</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <Top>0.67361in</Top>
+            <Left>0.40625in</Left>
+            <Height>0.75025in</Height>
+            <Width>5.91667in</Width>
+            <ZIndex>2</ZIndex>
+            <DataElementOutput>NoOutput</DataElementOutput>
+            <Style>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox3">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>For more information, search for "calculated series" in </Value>
+                    <MarkupType>HTML</MarkupType>
+                    <Style />
+                  </TextRun>
+                  <TextRun>
+                    <Value>Report Builder 3.0 on MSDN</Value>
+                    <ActionInfo>
+                      <Actions>
+                        <Action>
+                          <Hyperlink>http://go.microsoft.com/fwlink/?LinkId=154494</Hyperlink>
+                        </Action>
+                      </Actions>
+                    </ActionInfo>
+                    <MarkupType>HTML</MarkupType>
+                    <Style>
+                      <TextDecoration>Underline</TextDecoration>
+                      <Color>Blue</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value>.</Value>
+                    <MarkupType>HTML</MarkupType>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>5.31771in</Top>
+            <Left>0.47508in</Left>
+            <Height>0.25in</Height>
+            <Width>5.84784in</Width>
+            <ZIndex>3</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+        </ReportItems>
+        <Height>5.9375in</Height>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Body>
+      <Width>6.4375in</Width>
+      <Page>
+        <PageHeader>
+          <Height>0.25in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageHeader>
+        <PageFooter>
+          <Height>0.25in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageFooter>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>a5366ba5-224a-4ba5-8455-055ca073d29f</rd:ReportID>
+</Report>
