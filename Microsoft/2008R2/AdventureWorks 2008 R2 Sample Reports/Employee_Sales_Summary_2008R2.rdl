@@ -167,14 +167,16 @@
     <DataSet Name="CategoryQuotas">
       <Query>
         <DataSourceName>AdventureWorks</DataSourceName>
-        <CommandText>SELECT 1 as ID, 'Accessories' as Category, 
-   1000 as Quota, 25 as PercentDeviation
-UNION SELECT 2 as ID, 'Bikes' as Category, 
-   70000 as Quota, 5 as PercentDeviation
-UNION SELECT 3 as ID, 'Clothing' as Category, 
-   2500 as Quota, 20 as PercentDeviation 
-UNION SELECT 4 as ID, 'Components' as Category, 
-   20000 as Quota, 10 as PercentDeviation</CommandText>
+        <CommandText>
+					SELECT 1 as ID, 'Accessories' as Category,
+					1000 as Quota, 25 as PercentDeviation
+					UNION SELECT 2 as ID, 'Bikes' as Category,
+					70000 as Quota, 5 as PercentDeviation
+					UNION SELECT 3 as ID, 'Clothing' as Category,
+					2500 as Quota, 20 as PercentDeviation
+					UNION SELECT 4 as ID, 'Components' as Category,
+					20000 as Quota, 10 as PercentDeviation
+				</CommandText>
       </Query>
       <Fields>
         <Field Name="ID">
@@ -240,9 +242,11 @@ UNION SELECT 4 as ID, 'Components' as Category,
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>As a salesperson for AdventureWorks, I want to know how my sales compare to seasonal sales in previous years.
+                    <Value>
+											As a salesperson for AdventureWorks, I want to know how my sales compare to seasonal sales in previous years.
 
-The </Value>
+											The
+										</Value>
                     <Style>
                       <Color>Brown</Color>
                     </Style>
@@ -282,9 +286,11 @@ The </Value>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> charts show year over year sales for all categories .
+                    <Value>
+											charts show year over year sales for all categories .
 
-The </Value>
+											The
+										</Value>
                     <Style>
                       <Color>Brown</Color>
                     </Style>
@@ -304,9 +310,11 @@ The </Value>
                     </Style>
                   </TextRun>
                   <TextRun>
-                    <Value> with indicators shows current sales compared to quotas. Change quota values on the reportviewer toolbar.
+                    <Value>
+											with indicators shows current sales compared to quotas. Change quota values on the reportviewer toolbar.
 
-The </Value>
+											The
+										</Value>
                     <Style>
                       <Color>Brown</Color>
                     </Style>
@@ -3444,8 +3452,9 @@ The </Value>
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Purpose: Summary report. Displays year over year sales for all categories, for individual categories, and for quotas. Includes charts (line, sparkline, column with scale breaks, databar), tablix (toggle rows, row group, indicators at table and group level), group and report variables, rectangle containers, shared datasets, shared data source, custom code for chart line color, bookmarks, drilthrough action, multivalue parameters, and parameters to control conditional visibility of text boxes and toggle rows.
-</Value>
+                      <Value>
+												Purpose: Summary report. Displays year over year sales for all categories, for individual categories, and for quotas. Includes charts (line, sparkline, column with scale breaks, databar), tablix (toggle rows, row group, indicators at table and group level), group and report variables, rectangle containers, shared datasets, shared data source, custom code for chart line color, bookmarks, drilthrough action, multivalue parameters, and parameters to control conditional visibility of text boxes and toggle rows.
+											</Value>
                       <Style>
                         <Color>Brown</Color>
                       </Style>
@@ -3641,21 +3650,23 @@ The </Value>
       </CellDefinitions>
     </GridLayoutDefinition>
   </ReportParametersLayout>
-  <Code>Private colorPalette As String() = {"Blue", "Orange", "Green"}
-    Private count As Integer = 0
-    Private mapping As New System.Collections.Hashtable()
-    Public Function GetColor(ByVal groupingValue As String) As String
-       If groupingValue = Nothing Then 
-          Return "Black" 
-       End If
-        If mapping.ContainsKey(groupingValue) Then
-            Return mapping(groupingValue)
-        End If
-        Dim c As String = colorPalette(count Mod colorPalette.Length)
-        count = count + 1
-        mapping.Add(groupingValue, c)
-        Return c
-    End Function</Code>
+  <Code>
+		Private colorPalette As String() = {"Blue", "Orange", "Green"}
+		Private count As Integer = 0
+		Private mapping As New System.Collections.Hashtable()
+		Public Function GetColor(ByVal groupingValue As String) As String
+		If groupingValue = Nothing Then
+		Return "Black"
+		End If
+		If mapping.ContainsKey(groupingValue) Then
+		Return mapping(groupingValue)
+		End If
+		Dim c As String = colorPalette(count Mod colorPalette.Length)
+		count = count + 1
+		mapping.Add(groupingValue, c)
+		Return c
+		End Function
+	</Code>
   <EmbeddedImages>
     <EmbeddedImage Name="AdventureWorksLogo">
       <MIMEType>image/jpeg</MIMEType>

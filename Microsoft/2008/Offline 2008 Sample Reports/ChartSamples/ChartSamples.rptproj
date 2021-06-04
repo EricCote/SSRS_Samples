@@ -9,7 +9,7 @@
     <TargetServerVersion>SSRS2016</TargetServerVersion>
     <Platform>Win32</Platform>
     <TargetReportFolder>Charts2008</TargetReportFolder>
-    <TargetDatasourceFolder>Charts2008\Data Sources</TargetDatasourceFolder>
+    <TargetDatasourceFolder>Charts2008/Data Sources</TargetDatasourceFolder>
     <TargetServerURL>http://localhost/ReportServer</TargetServerURL>
     <StartItem>_PieCharts_VisualEffects.rdl</StartItem>
   </PropertyGroup>
@@ -22,7 +22,7 @@
     <TargetServerVersion>SSRS2016</TargetServerVersion>
     <Platform>Win32</Platform>
     <TargetReportFolder>Charts2008</TargetReportFolder>
-    <TargetDatasourceFolder>Charts2008\Data Sources</TargetDatasourceFolder>
+    <TargetDatasourceFolder>Charts2008/Data Sources</TargetDatasourceFolder>
     <TargetServerURL>http://localhost/ReportServer</TargetServerURL>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -34,7 +34,7 @@
     <TargetServerVersion>SSRS2016</TargetServerVersion>
     <Platform>Win32</Platform>
     <TargetReportFolder>Charts2008</TargetReportFolder>
-    <TargetDatasourceFolder>Charts2008\Data Sources</TargetDatasourceFolder>
+    <TargetDatasourceFolder>Charts2008/Data Sources</TargetDatasourceFolder>
     <TargetServerURL>http://localhost/ReportServer</TargetServerURL>
   </PropertyGroup>
   <PropertyGroup>

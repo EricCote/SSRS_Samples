@@ -9,7 +9,7 @@
     <TargetServerVersion>SSRS2016</TargetServerVersion>
     <Platform>Win32</Platform>
     <TargetReportFolder>AdventureWorks 2008</TargetReportFolder>
-    <TargetDatasourceFolder>AdventureWorks 2008\Data Sources</TargetDatasourceFolder>
+    <TargetDatasourceFolder>AdventureWorks 2008/Data Sources</TargetDatasourceFolder>
     <TargetServerURL>http://localhost/reportserver</TargetServerURL>
     <StartItem>Company Sales.rdl</StartItem>
   </PropertyGroup>
@@ -22,7 +22,7 @@
     <TargetServerVersion>SSRS2016</TargetServerVersion>
     <Platform>Win32</Platform>
     <TargetReportFolder>AdventureWorks 2008</TargetReportFolder>
-    <TargetDatasourceFolder>AdventureWorks 2008\Data Sources</TargetDatasourceFolder>
+    <TargetDatasourceFolder>AdventureWorks 2008/Data Sources</TargetDatasourceFolder>
     <TargetServerURL>http://localhost/reportserver</TargetServerURL>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -34,7 +34,7 @@
     <TargetServerVersion>SSRS2016</TargetServerVersion>
     <Platform>Win32</Platform>
     <TargetReportFolder>AdventureWorks 2008</TargetReportFolder>
-    <TargetDatasourceFolder>AdventureWorks 2008\Data Sources</TargetDatasourceFolder>
+    <TargetDatasourceFolder>AdventureWorks 2008/Data Sources</TargetDatasourceFolder>
     <TargetServerURL>http://localhost/reportserver</TargetServerURL>
   </PropertyGroup>
   <PropertyGroup>
