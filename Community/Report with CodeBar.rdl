@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report MustUnderstand="df" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:df="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition/defaultfontfamily">
+  <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="AventureWorks">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString>Data Source=report001;Initial Catalog=AdventureWorks2019</ConnectString>
+        <IntegratedSecurity>true</IntegratedSecurity>
+      </ConnectionProperties>
+      <rd:SecurityType>Integrated</rd:SecurityType>
+      <rd:DataSourceID>40f333ea-cb28-4a47-98ed-13c865498097</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="ListeCategories">
+      <Query>
+        <DataSourceName>AventureWorks</DataSourceName>
+        <CommandText>SELECT Production.ProductSubcategory.Name AS SubCategory, Production.Product.Name AS Produit, Production.Product.ProductNumber, Production.Product.Color
+FROM   Production.ProductSubcategory INNER JOIN
+             Production.Product ON Production.ProductSubcategory.ProductSubcategoryID = Production.Product.ProductSubcategoryID</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="SubCategory">
+          <DataField>SubCategory</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Produit">
+          <DataField>Produit</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="ProductNumber">
+          <DataField>ProductNumber</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Color">
+          <DataField>Color</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Tablix Name="Tablix1">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>1in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>2.90972in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox1">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Produit</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox1</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox3">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Product Number</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox3</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox5">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value />
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox5</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>0.47222in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Produit">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Produit.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Produit</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="ProductNumber">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!ProductNumber.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>ProductNumber</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Image Name="Image1">
+                          <Source>Database</Source>
+                          <Value>=Code.Code128("*" &amp; Fields!ProductNumber.Value &amp; "*")</Value>
+                          <MIMEType>image/png</MIMEType>
+                          <Sizing>FitProportional</Sizing>
+                          <Style>
+                            <Border>
+                              <Style>None</Style>
+                            </Border>
+                          </Style>
+                        </Image>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="Details" />
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>ListeCategories</DataSetName>
+            <Top>0.62028in</Top>
+            <Height>0.72222in</Height>
+            <Width>4.90972in</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+        </ReportItems>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <LeftMargin>1in</LeftMargin>
+        <RightMargin>1in</RightMargin>
+        <TopMargin>1in</TopMargin>
+        <BottomMargin>1in</BottomMargin>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>2</NumberOfRows>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
+  <Code>Function StringToBarcode(value As String) As String
+  Dim charPos, minCharPos As Integer
+  Dim currentChar, checksum As Integer
+  Dim isTableB As Boolean = True, isValid As Boolean = True
+  Dim returnValue As String = String.Empty
+
+  If (value Is Nothing OrElse value.Length = 0) Then
+    Return String.Empty
+  End If
+
+  'Check for valid characters
+  For charCount As Integer = 0 To value.Length - 1
+    currentChar = Asc(value.Substring(charCount, 1))
+    If (Not (currentChar &gt;= 32 AndAlso currentChar &lt;= 126)) Then
+      isValid = False
+      Exit For
+    End If
+  Next
+
+  If Not (isValid) Then Return returnValue
+  charPos = 0
+  While (charPos &lt; value.Length)
+    If (isTableB) Then
+      'See if interesting to switch to table C
+      'yes for 4 digits at start or end, else if 6 digits
+      If (charPos = 0 OrElse charPos + 4 = value.Length) Then
+        minCharPos = 4
+      Else
+        minCharPos = 6
+      End If
+      minCharPos = IsNumber(value, charPos, minCharPos)
+
+      If (minCharPos &lt; 0) Then
+        'Choice table C
+        If (charPos = 0) Then
+        'Starting with table C
+        'char.ConvertFromUtf32(205)
+          returnValue = Chr(205).ToString()
+        Else
+          'Switch to table C
+          returnValue = returnValue + Chr(199).ToString()
+        End If
+        isTableB = False
+      Else
+        If (charPos = 0) Then
+          'Starting with table B
+          returnValue = Chr(204).ToString()
+          'char.ConvertFromUtf32(204);
+        End If
+      End If
+    End If
+
+    If (Not isTableB) Then
+      'We are on table C, try to process 2 digits
+      minCharPos = 2
+      minCharPos = IsNumber(value, charPos, minCharPos)
+
+      If (minCharPos &lt; 0) Then
+        'OK for 2 digits, process it
+        currentChar = Integer.Parse(value.Substring(charPos, 2))
+        If (currentChar &lt; 95) Then
+          currentChar = currentChar + 32
+        Else
+          currentChar = currentChar + 100
+        End If
+        returnValue = returnValue + Chr(currentChar).ToString()
+        charPos += 2
+      Else
+        'We haven't 2 digits, switch to table B
+        returnValue = returnValue + Chr(200).ToString()
+        isTableB = True
+      End If
+    End If
+
+    If (isTableB) Then
+      'Process 1 digit with table B
+      returnValue = returnValue + value.Substring(charPos, 1)
+      charPos += 1
+    End If
+
+   End While
+
+  'Calculation of the checksum
+  checksum = 0
+  Dim loo As Integer
+  For loo = 0 To returnValue.Length - 1
+    currentChar = Asc(returnValue.Substring(loo, 1))
+    If (currentChar &lt; 127) Then
+      currentChar = currentChar - 32
+    Else
+      currentChar = currentChar - 100
+    End If
+    If (loo = 0) Then
+      checksum = currentChar
+    Else
+      checksum = (checksum + (loo * currentChar)) Mod 103
+    End If
+  Next
+
+  'Calculation of the checksum ASCII code
+  If (checksum &lt; 95) Then
+    checksum = checksum + 32
+  Else
+    checksum = checksum + 100
+  End If
+
+  ' Add the checksum and the STOP
+'  returnValue = returnValue + _
+'  Chr(checksum).ToString() + _
+'  Chr(206).ToString()
+
+  Return returnValue
+End Function
+
+Function IsNumber(InputValue As String, CharPos As Integer, MinCharPos As Integer) As Integer
+  MinCharPos -= 1
+  If (CharPos + MinCharPos &lt; InputValue.Length) Then
+    While (MinCharPos &gt;= 0)
+      If (Asc(InputValue.Substring(CharPos + MinCharPos, 1)) &lt; 48 _
+      OrElse Asc(InputValue.Substring(CharPos + MinCharPos, 1)) &gt; 57) Then
+      Exit While
+    End If
+    MinCharPos -= 1
+    End While
+  End If
+  Return MinCharPos  
+End Function
+
+Public Function Code128(ByVal stringText As String) As Byte()
+  Dim result As Byte() = Nothing
+
+  Try
+  result = GenerateImage("free 3 of 9", StringToBarcode(stringText))
+  Catch ex As Exception
+  End Try
+
+  Return result
+End Function
+
+Public Function GenerateImage(ByVal fontName As String, ByVal stringText As String) As Byte()
+  Dim oGraphics As System.Drawing.Graphics
+  Dim barcodeSize As System.Drawing.SizeF
+  Dim ms As System.IO.MemoryStream
+
+  Using font As New System.Drawing.Font(New System.Drawing.FontFamily(fontName), 30)
+  Using tmpBitmap As New System.Drawing.Bitmap(1, 1, System.Drawing.Imaging.PixelFormat.Format32bppArgb)
+  oGraphics = System.Drawing.Graphics.FromImage(tmpBitmap)
+  oGraphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixel
+  barcodeSize = oGraphics.MeasureString(stringText, font)
+  oGraphics.Dispose()
+  End Using
+
+  Using newBitmap As New System.Drawing.Bitmap(barcodeSize.Width, barcodeSize.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb)
+  oGraphics = System.Drawing.Graphics.FromImage(newBitmap)
+  oGraphics.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SingleBitPerPixel
+
+  Using oSolidBrushWhite As New System.Drawing.SolidBrush(System.Drawing.Color.White)
+  Using oSolidBrushBlack As New System.Drawing.SolidBrush(System.Drawing.Color.Black)
+  oGraphics.FillRectangle(oSolidBrushWhite, New System.Drawing.Rectangle(0, 0, barcodeSize.Width, barcodeSize.Height))
+  oGraphics.DrawString(stringText, font, oSolidBrushBlack, 0, 0)
+  End Using
+
+  End Using
+
+  ms = New System.IO.MemoryStream()
+  newBitmap.Save(ms, System.Drawing.Imaging.ImageFormat.Png)
+  End Using
+  End Using
+
+  Return ms.ToArray()
+End Function</Code>
+  <CodeModules>
+    <CodeModule>System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</CodeModule>
+  </CodeModules>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>3cae9a18-7710-4b00-aab8-bb24e3c504cc</rd:ReportID>
+</Report>
