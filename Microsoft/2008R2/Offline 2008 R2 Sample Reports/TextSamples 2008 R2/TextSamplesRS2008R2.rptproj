@@ -9,7 +9,7 @@
     <TargetServerVersion>SSRS2016</TargetServerVersion>
     <Platform>Win32</Platform>
     <TargetReportFolder>RichText2008R2</TargetReportFolder>
-    <TargetDatasourceFolder>RichText2008R2\Data Sources</TargetDatasourceFolder>
+    <TargetDatasourceFolder>RichText2008R2/Data Sources</TargetDatasourceFolder>
     <TargetServerURL>http://localhost/reportserver</TargetServerURL>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'DebugLocal' ">
@@ -21,7 +21,7 @@
     <TargetServerVersion>SSRS2016</TargetServerVersion>
     <Platform>Win32</Platform>
     <TargetReportFolder>RichText2008R2</TargetReportFolder>
-    <TargetDatasourceFolder>RichText2008R2\Data Sources</TargetDatasourceFolder>
+    <TargetDatasourceFolder>RichText2008R2/Data Sources</TargetDatasourceFolder>
     <TargetServerURL>http://localhost/reportserver</TargetServerURL>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
@@ -33,7 +33,7 @@
     <TargetServerVersion>SSRS2016</TargetServerVersion>
     <Platform>Win32</Platform>
     <TargetReportFolder>RichText2008R2</TargetReportFolder>
-    <TargetDatasourceFolder>RichText2008R2\Data Sources</TargetDatasourceFolder>
+    <TargetDatasourceFolder>RichText2008R2/Data Sources</TargetDatasourceFolder>
     <TargetServerURL>http://localhost/reportserver</TargetServerURL>
   </PropertyGroup>
   <PropertyGroup>

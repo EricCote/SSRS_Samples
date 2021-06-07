@@ -1,0 +1,926 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <Description>Adventure Works sales by quarter and product category. This report illustrates the use of a tablix data region with nested row groups and column groups. You can drilldown from summary data into detail data by showing and hiding rows. This report also illustrates the use of a logo image and a background image.</Description>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="AdventureWorks">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString>Data Source=localhost;Initial Catalog=AdventureWorks2019</ConnectString>
+        <IntegratedSecurity>true</IntegratedSecurity>
+      </ConnectionProperties>
+      <rd:SecurityType>Integrated</rd:SecurityType>
+      <rd:DataSourceID>4250a7e9-e24a-40ff-8856-5a7e6424aa29</rd:DataSourceID>
+    </DataSource>
+    <DataSource Name="XmlData">
+      <ConnectionProperties>
+        <DataProvider>ENTERDATA</DataProvider>
+        <ConnectString />
+        <IntegratedSecurity>true</IntegratedSecurity>
+      </ConnectionProperties>
+      <rd:SecurityType>Integrated</rd:SecurityType>
+      <rd:DataSourceID>791fe225-e994-40cc-a5e6-a55790e11b17</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="Sales">
+      <Query>
+        <DataSourceName>AdventureWorks</DataSourceName>
+        <QueryParameters>
+          <QueryParameter Name="@StartDate">
+            <Value>=Parameters!StartDate.Value</Value>
+          </QueryParameter>
+          <QueryParameter Name="@EndDate">
+            <Value>=Parameters!EndDate.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <CommandText>--DECLARE @StartDate datetime
+--DECLARE @EndDate datetime
+
+--SET @StartDate = '20020101'
+--SET @EndDate = '20031231'
+--SET DATEFORMAT mdy
+
+SELECT      
+   PC.Name AS Category, PS.Name AS Subcategory, 
+   DATEPART(yy, SOH.OrderDate) AS Year, 
+   'Q' + DATENAME(qq, SOH.OrderDate) AS Qtr, 
+   SUM(DET.UnitPrice * DET.OrderQty) AS Sales
+FROM Production.ProductSubcategory PS INNER JOIN
+   Sales.SalesOrderHeader SOH INNER JOIN
+      Sales.SalesOrderDetail DET ON SOH.SalesOrderID = DET.SalesOrderID INNER JOIN
+      Production.Product P ON DET.ProductID = P.ProductID 
+      ON PS.ProductSubcategoryID = P.ProductSubcategoryID INNER JOIN
+   Production.ProductCategory PC ON PS.ProductCategoryID = PC.ProductCategoryID
+WHERE (SOH.OrderDate BETWEEN (@StartDate) AND (@EndDate))
+GROUP BY DATEPART(yy, SOH.OrderDate), PC.Name, PS.Name, 
+   'Q' + DATENAME(qq, SOH.OrderDate), PS.ProductSubcategoryID</CommandText>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+      </Query>
+      <Fields>
+        <Field Name="Category">
+          <DataField>Category</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Subcategory">
+          <DataField>Subcategory</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Year">
+          <DataField>Year</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Qtr">
+          <DataField>Qtr</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Sales">
+          <DataField>Sales</DataField>
+          <rd:TypeName>System.Decimal</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="Textes">
+      <Query>
+        <DataSourceName>XmlData</DataSourceName>
+        <CommandText>&lt;Query&gt;
+  &lt;XmlData&gt;
+    &lt;Data&gt;
+      &lt;Row&gt;
+        &lt;en&gt;Adventure Works Sales &lt;/en&gt;
+        &lt;fr&gt;Ventes d'AdventureWorks&lt;/fr&gt;
+      &lt;/Row&gt;
+      &lt;Row&gt;
+        &lt;en&gt;Bikes&lt;/en&gt;
+        &lt;fr&gt;Vélos&lt;/fr&gt;
+      &lt;/Row&gt;
+      &lt;Row&gt;
+        &lt;en&gt;Components&lt;/en&gt;
+        &lt;fr&gt;Composantes&lt;/fr&gt;
+      &lt;/Row&gt;
+      &lt;Row&gt;
+        &lt;en&gt;Clothing&lt;/en&gt;
+        &lt;fr&gt;Vêtements&lt;/fr&gt;
+      &lt;/Row&gt;
+      &lt;Row&gt;
+        &lt;en&gt;Accessories&lt;/en&gt;
+        &lt;fr&gt;Accessoires&lt;/fr&gt;
+      &lt;/Row&gt;
+    &lt;/Data&gt;
+  &lt;/XmlData&gt;
+  &lt;ElementPath&gt;Data{}/Row{en(String),fr(String)}&lt;/ElementPath&gt;
+&lt;/Query&gt;</CommandText>
+        <rd:DesignerState>
+          <DataGrid xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="">
+            <RowNumber>5</RowNumber>
+            <ColumnNumber>2</ColumnNumber>
+            <ColumnName ColumnIndex="0" ColumnWidth="235" DataType="String">en</ColumnName>
+            <ColumnName ColumnIndex="1" ColumnWidth="286" DataType="String">fr</ColumnName>
+            <Data ColumnIndex="0" RowIndex="0">Adventure Works Sales </Data>
+            <Data ColumnIndex="1" RowIndex="0">Ventes d'AdventureWorks</Data>
+            <Data ColumnIndex="0" RowIndex="1">Bikes</Data>
+            <Data ColumnIndex="1" RowIndex="1">Vélos</Data>
+            <Data ColumnIndex="0" RowIndex="2">Components</Data>
+            <Data ColumnIndex="1" RowIndex="2">Composantes</Data>
+            <Data ColumnIndex="0" RowIndex="3">Clothing</Data>
+            <Data ColumnIndex="1" RowIndex="3">Vêtements</Data>
+            <Data ColumnIndex="0" RowIndex="4">Accessories</Data>
+            <Data ColumnIndex="1" RowIndex="4">Accessoires</Data>
+          </DataGrid>
+        </rd:DesignerState>
+      </Query>
+      <Fields>
+        <Field Name="en">
+          <DataField>en</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="fr">
+          <DataField>fr</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Textbox Name="Textbox1">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Label>Report Title</Label>
+                    <Value>=Code.Traduire("Adventure Works Sales")</Value>
+                    <Style>
+                      <FontSize>18pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                      <Color>White</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!StartDate.Value</Value>
+                    <Style>
+                      <FontStyle>Italic</FontStyle>
+                      <FontSize>14pt</FontSize>
+                      <Format>MMMM dd, yyyy</Format>
+                      <Color>White</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value xml:space="preserve"> </Value>
+                    <Style>
+                      <FontStyle>Italic</FontStyle>
+                      <FontSize>14pt</FontSize>
+                      <Color>White</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>- </Value>
+                    <Style>
+                      <FontStyle>Italic</FontStyle>
+                      <FontSize>14pt</FontSize>
+                      <Color>White</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=Parameters!EndDate.Value</Value>
+                    <Style>
+                      <FontStyle>Italic</FontStyle>
+                      <FontSize>14pt</FontSize>
+                      <Format>MMMM dd, yyyy</Format>
+                      <Color>White</Color>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>0.07514in</Top>
+            <Left>2.04527in</Left>
+            <Height>0.83333in</Height>
+            <Width>2.78473in</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <BackgroundColor>SteelBlue</BackgroundColor>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Tablix Name="Tablix1">
+            <TablixCorner>
+              <TablixCornerRows>
+                <TablixCornerRow>
+                  <TablixCornerCell>
+                    <CellContents>
+                      <Textbox Name="Textbox6">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value />
+                                <Style />
+                              </TextRun>
+                            </TextRuns>
+                            <Style />
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>Textbox6</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>SteelBlue</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                      <ColSpan>2</ColSpan>
+                      <RowSpan>2</RowSpan>
+                    </CellContents>
+                  </TablixCornerCell>
+                  <TablixCornerCell />
+                </TablixCornerRow>
+                <TablixCornerRow>
+                  <TablixCornerCell />
+                  <TablixCornerCell />
+                </TablixCornerRow>
+              </TablixCornerRows>
+            </TablixCorner>
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>1in</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>0.25in</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Sales">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Sum(Fields!Sales.Value)</Value>
+                                  <Style>
+                                    <Format>'$'#,0;('$'#,0)</Format>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Sales</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                            <rd:FormatSymbolCulture>en-US</rd:FormatSymbolCulture>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="Year">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!Year.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!Year.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixHeader>
+                    <Size>0.25in</Size>
+                    <CellContents>
+                      <Textbox Name="Year">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>=Fields!Year.Value</Value>
+                                <Style>
+                                  <FontWeight>Bold</FontWeight>
+                                  <Color>White</Color>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style>
+                              <TextAlign>Center</TextAlign>
+                            </Style>
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>Year</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>SteelBlue</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember>
+                      <Group Name="Qtr">
+                        <GroupExpressions>
+                          <GroupExpression>=Fields!Qtr.Value</GroupExpression>
+                        </GroupExpressions>
+                      </Group>
+                      <SortExpressions>
+                        <SortExpression>
+                          <Value>=Fields!Qtr.Value</Value>
+                        </SortExpression>
+                      </SortExpressions>
+                      <TablixHeader>
+                        <Size>0.25in</Size>
+                        <CellContents>
+                          <Textbox Name="Qtr">
+                            <CanGrow>true</CanGrow>
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value>=Fields!Qtr.Value</Value>
+                                    <Style>
+                                      <FontWeight>Bold</FontWeight>
+                                      <Color>White</Color>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
+                                <Style>
+                                  <TextAlign>Center</TextAlign>
+                                </Style>
+                              </Paragraph>
+                            </Paragraphs>
+                            <rd:DefaultName>Qtr</rd:DefaultName>
+                            <Style>
+                              <Border>
+                                <Color>LightGrey</Color>
+                                <Style>Solid</Style>
+                              </Border>
+                              <BackgroundColor>SteelBlue</BackgroundColor>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                              <PaddingTop>2pt</PaddingTop>
+                              <PaddingBottom>2pt</PaddingBottom>
+                            </Style>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
+                      <Visibility>
+                        <Hidden>true</Hidden>
+                        <ToggleItem>Year</ToggleItem>
+                      </Visibility>
+                    </TablixMember>
+                  </TablixMembers>
+                </TablixMember>
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <Group Name="Category">
+                    <GroupExpressions>
+                      <GroupExpression>=Fields!Category.Value</GroupExpression>
+                    </GroupExpressions>
+                  </Group>
+                  <SortExpressions>
+                    <SortExpression>
+                      <Value>=Fields!Category.Value</Value>
+                    </SortExpression>
+                  </SortExpressions>
+                  <TablixHeader>
+                    <Size>1.15625in</Size>
+                    <CellContents>
+                      <Textbox Name="Category">
+                        <CanGrow>true</CanGrow>
+                        <KeepTogether>true</KeepTogether>
+                        <Paragraphs>
+                          <Paragraph>
+                            <TextRuns>
+                              <TextRun>
+                                <Value>=Code.Traduire(Fields!Category.Value)</Value>
+                                <Style>
+                                  <FontWeight>Bold</FontWeight>
+                                  <Color>White</Color>
+                                </Style>
+                              </TextRun>
+                            </TextRuns>
+                            <Style />
+                          </Paragraph>
+                        </Paragraphs>
+                        <rd:DefaultName>Category</rd:DefaultName>
+                        <Style>
+                          <Border>
+                            <Color>LightGrey</Color>
+                            <Style>Solid</Style>
+                          </Border>
+                          <BackgroundColor>SteelBlue</BackgroundColor>
+                          <PaddingLeft>2pt</PaddingLeft>
+                          <PaddingRight>2pt</PaddingRight>
+                          <PaddingTop>2pt</PaddingTop>
+                          <PaddingBottom>2pt</PaddingBottom>
+                        </Style>
+                      </Textbox>
+                    </CellContents>
+                  </TablixHeader>
+                  <TablixMembers>
+                    <TablixMember>
+                      <Group Name="Subcategory">
+                        <GroupExpressions>
+                          <GroupExpression>=Fields!Subcategory.Value</GroupExpression>
+                        </GroupExpressions>
+                      </Group>
+                      <SortExpressions>
+                        <SortExpression>
+                          <Value>=Fields!Subcategory.Value</Value>
+                        </SortExpression>
+                      </SortExpressions>
+                      <TablixHeader>
+                        <Size>1.16667in</Size>
+                        <CellContents>
+                          <Textbox Name="Subcategory">
+                            <CanGrow>true</CanGrow>
+                            <KeepTogether>true</KeepTogether>
+                            <Paragraphs>
+                              <Paragraph>
+                                <TextRuns>
+                                  <TextRun>
+                                    <Value>=Fields!Subcategory.Value</Value>
+                                    <Style>
+                                      <FontWeight>Bold</FontWeight>
+                                      <Color>White</Color>
+                                    </Style>
+                                  </TextRun>
+                                </TextRuns>
+                                <Style />
+                              </Paragraph>
+                            </Paragraphs>
+                            <rd:DefaultName>Subcategory</rd:DefaultName>
+                            <Style>
+                              <Border>
+                                <Color>LightGrey</Color>
+                                <Style>Solid</Style>
+                              </Border>
+                              <BackgroundColor>SteelBlue</BackgroundColor>
+                              <PaddingLeft>2pt</PaddingLeft>
+                              <PaddingRight>2pt</PaddingRight>
+                              <PaddingTop>2pt</PaddingTop>
+                              <PaddingBottom>2pt</PaddingBottom>
+                            </Style>
+                          </Textbox>
+                        </CellContents>
+                      </TablixHeader>
+                      <Visibility>
+                        <Hidden>true</Hidden>
+                        <ToggleItem>Category</ToggleItem>
+                      </Visibility>
+                    </TablixMember>
+                  </TablixMembers>
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>Sales</DataSetName>
+            <Top>1.06264in</Top>
+            <Left>0.1425in</Left>
+            <Height>0.75in</Height>
+            <Width>3.32292in</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+          <Image Name="Logo">
+            <Source>Embedded</Source>
+            <Value>logopart</Value>
+            <Sizing>FitProportional</Sizing>
+            <Top>0.07514in</Top>
+            <Left>0.1425in</Left>
+            <Height>0.78125in</Height>
+            <Width>1.83333in</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Image>
+        </ReportItems>
+        <Height>2.00708in</Height>
+        <Style>
+          <Border />
+        </Style>
+      </Body>
+      <Width>4.83in</Width>
+      <Page>
+        <PageHeader>
+          <Height>0.38208in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="ReportName">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Globals!ReportName</Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                        <FontSize>9pt</FontSize>
+                        <Color>SteelBlue</Color>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>ReportName</rd:DefaultName>
+              <Top>0.06264in</Top>
+              <Left>3.1425in</Left>
+              <Height>0.25in</Height>
+              <Width>1.6875in</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageHeader>
+        <PageFooter>
+          <Height>1in</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="Textbox2">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>This report illustrates how to do report localization for multiple cultures.  
+</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value />
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>1. Add a </Value>
+                      <Style />
+                    </TextRun>
+                    <TextRun>
+                      <Value>Language </Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                        <TextDecoration>None</TextDecoration>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value>parameter, of type text  </Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>a. Add a list of available values with values in the form of language-country.  Ex: en-US, en-GB, fr-CA, es-MX. (the lbec can be whatever you want.</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>b. Add a default value uses the current browser language settings. If the  browser language is not in the list of available values, the first language in the list will be used. </Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value xml:space="preserve">  </Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>2. Set the report language to the report parameter called </Value>
+                      <Style />
+                    </TextRun>
+                    <TextRun>
+                      <Value>Language. </Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value />
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox2</rd:DefaultName>
+              <Top>0.06944in</Top>
+              <Left>0.1425in</Left>
+              <Height>0.93056in</Height>
+              <Width>4.6875in</Width>
+              <Visibility>
+                <Hidden>=Not Parameters!ShowDescription.Value</Hidden>
+              </Visibility>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageFooter>
+        <PageWidth>9in</PageWidth>
+        <LeftMargin>1in</LeftMargin>
+        <RightMargin>1in</RightMargin>
+        <TopMargin>1in</TopMargin>
+        <BottomMargin>1in</BottomMargin>
+        <Style>
+          <BackgroundImage>
+            <Source>Embedded</Source>
+            <Value>logoback</Value>
+          </BackgroundImage>
+        </Style>
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="ShowDescription">
+      <DataType>Boolean</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>False</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Show Description?</Prompt>
+      <Hidden>true</Hidden>
+    </ReportParameter>
+    <ReportParameter Name="StartDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>01/01/2011 00:00:00</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Start Date</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="EndDate">
+      <DataType>DateTime</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>12/31/2014 00:00:00</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>End Date</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Language">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>=iif(User!Language = "fr-CA", "fr-CA", "en-CA")</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Entrez Langue</Prompt>
+      <ValidValues>
+        <ParameterValues>
+          <ParameterValue>
+            <Value>fr-CA</Value>
+            <Label>Français</Label>
+          </ParameterValue>
+          <ParameterValue>
+            <Value>en-CA</Value>
+            <Label>English</Label>
+          </ParameterValue>
+        </ParameterValues>
+      </ValidValues>
+    </ReportParameter>
+    <ReportParameter Name="Traduction">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <DataSetReference>
+          <DataSetName>Textes</DataSetName>
+          <ValueField>en</ValueField>
+        </DataSetReference>
+      </DefaultValue>
+      <Hidden>true</Hidden>
+      <ValidValues>
+        <DataSetReference>
+          <DataSetName>Textes</DataSetName>
+          <ValueField>en</ValueField>
+          <LabelField>fr</LabelField>
+        </DataSetReference>
+      </ValidValues>
+      <MultiValue>true</MultiValue>
+    </ReportParameter>
+  </ReportParameters>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>2</NumberOfColumns>
+      <NumberOfRows>3</NumberOfRows>
+      <CellDefinitions>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>0</RowIndex>
+          <ParameterName>ShowDescription</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>StartDate</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>1</RowIndex>
+          <ParameterName>EndDate</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>0</ColumnIndex>
+          <RowIndex>2</RowIndex>
+          <ParameterName>Language</ParameterName>
+        </CellDefinition>
+        <CellDefinition>
+          <ColumnIndex>1</ColumnIndex>
+          <RowIndex>2</RowIndex>
+          <ParameterName>Traduction</ParameterName>
+        </CellDefinition>
+      </CellDefinitions>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
+  <Code>Function Traduire(texte as string) as string
+ If  GetLanguage = "fr"  
+  Dim i as Integer=0
+  Do While(i&lt;=UBound(Report.Parameters!Traduction.Value)) 
+    If Report.Parameters!Traduction.Value(i) = texte Then
+      Return Report.Parameters!Traduction.Label(i)
+    End If
+    i += 1
+  Loop  
+  Return texte
+ End If
+ Return texte
+End Function 
+
+Function Test() As String
+  dim s as string =""
+  For Each prop as System.Reflection.MemberInfo in Report.GetType().GetMembers()
+    s = s &amp; prop.name &amp; vbcrlf
+  Next
+  Return s
+End Function
+
+Function DefaultLanguage(lang as String) As String
+  Dim langList = {"en-US", "fr-CA"}
+  if Ubound(Filter(langList, lang)) &gt; -1 Then
+    Return lang
+  else
+    Return "nope!"
+  end if 
+End Function
+
+
+Function GetLanguage() As String
+  Return LCase(Left(Report.Parameters!Language.Value, 2)) 
+End Function</Code>
+  <EmbeddedImages>
+    <EmbeddedImage Name="logoback">
+      <MIMEType>image/jpeg</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+    <EmbeddedImage Name="logopart">
+      <MIMEType>image/jpeg</MIMEType>
+      <ImageData>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</ImageData>
+    </EmbeddedImage>
+  </EmbeddedImages>
+  <Language>=Parameters!Language.Value</Language>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>16d599e6-9c87-4ebc-b45b-5a47e3c73746</rd:ReportID>
+</Report>
