@@ -27,49 +27,49 @@ Write-RsFolderContent -Path ".\Community" `
 
 
 $rsconfig = Get-RsDeploymentConfig -RsProjectFile '.\Microsoft\2008\AdventureWorks 2008 Sample Reports\AdventureWorks 2008 Sample Reports.rptproj' `
-                  -ConfigurationToUse Release | Add-Member –PassThru –MemberType NoteProperty –Name ReportPortal –Value $portal
+                  -ConfigurationToUse Release | Add-Member -PassThru -MemberType NoteProperty -Name ReportPortal -Value $portal
 
 $RSConfig | Publish-RsProject
 
 $rsconfig = Get-RsDeploymentConfig -RsProjectFile '.\Microsoft\2008\Offline 2008 Sample Reports\ChartSamples\ChartSamples.rptproj' `
-                  -ConfigurationToUse Release | Add-Member –PassThru –MemberType NoteProperty –Name ReportPortal –Value $portal
+                  -ConfigurationToUse Release | Add-Member -PassThru -MemberType NoteProperty -Name ReportPortal -Value $portal
 
 $RSConfig | Publish-RsProject
 
 $rsconfig = Get-RsDeploymentConfig -RsProjectFile '.\Microsoft\2008\Offline 2008 Sample Reports\GaugeSamples\GaugeSamples.rptproj' `
--ConfigurationToUse Release | Add-Member –PassThru –MemberType NoteProperty –Name ReportPortal –Value $portal
+-ConfigurationToUse Release | Add-Member -PassThru -MemberType NoteProperty -Name ReportPortal -Value $portal
 
 $RSConfig | Publish-RsProject
 
 $rsconfig = Get-RsDeploymentConfig -RsProjectFile '.\Microsoft\2008\Offline 2008 Sample Reports\TextSamples\TextSamples.rptproj' `
--ConfigurationToUse Release | Add-Member –PassThru –MemberType NoteProperty –Name ReportPortal –Value $portal
+-ConfigurationToUse Release | Add-Member -PassThru -MemberType NoteProperty -Name ReportPortal -Value $portal
 
 $RSConfig | Publish-RsProject
 
 
 $rsconfig = Get-RsDeploymentConfig -RsProjectFile '.\Microsoft\2008R2\Offline 2008 R2 Sample Reports\ChartSamples 2008 R2\ChartSamplesRS2008R2.rptproj' `
-                  -ConfigurationToUse Release | Add-Member –PassThru –MemberType NoteProperty –Name ReportPortal –Value $portal
+                  -ConfigurationToUse Release | Add-Member -PassThru -MemberType NoteProperty -Name ReportPortal -Value $portal
 
 $RSConfig | Publish-RsProject
                                                    
 $rsconfig = Get-RsDeploymentConfig -RsProjectFile '.\Microsoft\2008R2\Offline 2008 R2 Sample Reports\GaugeSamples 2008 R2\GaugeSamplesRS2008R2.rptproj' `
--ConfigurationToUse Release | Add-Member –PassThru –MemberType NoteProperty –Name ReportPortal –Value $portal
+-ConfigurationToUse Release | Add-Member -PassThru -MemberType NoteProperty -Name ReportPortal -Value $portal
 
 $RSConfig | Publish-RsProject
 
 $rsconfig = Get-RsDeploymentConfig -RsProjectFile '.\Microsoft\2008R2\Offline 2008 R2 Sample Reports\TextSamples 2008 R2\TextSamplesRS2008R2.rptproj' `
--ConfigurationToUse Release | Add-Member –PassThru –MemberType NoteProperty –Name ReportPortal –Value $portal
+-ConfigurationToUse Release | Add-Member -PassThru -MemberType NoteProperty -Name ReportPortal -Value $portal
 
 $RSConfig | Publish-RsProject
 
 
 $rsconfig = Get-RsDeploymentConfig -RsProjectFile '.\Microsoft\2008R2\AdventureWorks 2008 R2 Sample Reports\AdventureWorks 2008R2.rptproj' `
--ConfigurationToUse Release | Add-Member –PassThru –MemberType NoteProperty –Name ReportPortal –Value $portal
+-ConfigurationToUse Release | Add-Member -PassThru -MemberType NoteProperty -Name ReportPortal -Value $portal
 
 $RSConfig | Publish-RsProject
 
 $rsconfig = Get-RsDeploymentConfig -RsProjectFile '.\Microsoft\2012\AdventureWorks 2012 Sample Reports\AdventureWorks 2012 Sample Reports.rptproj' `
--ConfigurationToUse Release | Add-Member –PassThru –MemberType NoteProperty –Name ReportPortal –Value $portal
+-ConfigurationToUse Release | Add-Member -PassThru -MemberType NoteProperty -Name ReportPortal -Value $portal
 
 $RSConfig | Publish-RsProject
 
