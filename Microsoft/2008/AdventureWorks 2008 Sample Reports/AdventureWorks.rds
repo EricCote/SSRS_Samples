@@ -3,7 +3,7 @@
   <Name>AdventureWorks</Name>
   <ConnectionProperties>
     <Extension>SQL</Extension>
-    <ConnectString>Data Source=(local);Initial Catalog=AdventureWorks2019</ConnectString>
+    <ConnectString>Data Source=(local);Initial Catalog=AdventureWorks2022</ConnectString>
     <IntegratedSecurity>true</IntegratedSecurity>
   </ConnectionProperties>
   <DataSourceID>9c759c88-8310-40bf-94e9-9bbbbf72d11b</DataSourceID>

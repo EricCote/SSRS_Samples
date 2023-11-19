@@ -6,7 +6,7 @@
     <DataSource Name="AdventureWorks">
       <ConnectionProperties>
         <DataProvider>SQL</DataProvider>
-        <ConnectString>Data Source=(local);Initial Catalog=AdventureWorks2019</ConnectString>
+        <ConnectString>Data Source=(local);Initial Catalog=AdventureWorks2022</ConnectString>
         <IntegratedSecurity>true</IntegratedSecurity>
       </ConnectionProperties>
       <rd:SecurityType>Integrated</rd:SecurityType>
